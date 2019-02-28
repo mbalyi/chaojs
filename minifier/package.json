@@ -1,0 +1,22 @@
+{
+    "name": "chaojs_compiler",
+    "description": "",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "minify": "node ./minifier.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Mark Balyi",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://"
+    },
+    "homepage": "https://",
+    "devDependencies": {
+        "@node-minify/core": "4.0.5",
+        "@node-minify/sqwish": "4.1.0",
+        "@node-minify/google-closure-compiler": "4.0.5"
+    }
+}
