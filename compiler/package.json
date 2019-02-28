@@ -1,0 +1,17 @@
+{
+    "name": "chaojs_compiler",
+    "description": "",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "run": "",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Mark Balyi",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://"
+    },
+    "homepage": "https://"
+  }
