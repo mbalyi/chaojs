@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "run": "",
+        "run": "node ./minifier.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
@@ -13,5 +13,8 @@
     "bugs": {
         "url": "https://"
     },
-    "homepage": "https://"
-  }
+    "homepage": "https://",
+    "devDependencies": {
+        "node-minify": "3.6.0"
+    }
+}
