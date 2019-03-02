@@ -11,16 +11,14 @@ var ChaoDropdown = function(options = {}) {
     // Render the default html DOM structure
     this.render = function() {
         let dropdown = `
-<div>
-    <div class="chao-dropdown ${this._options.customClass}" id="chao-${this.$target.attr('id')}">
-        <div class="chao-dropdown-body">
-            <div class="chao-select">${this._options.defaultTitle}</div>
-            <div class="chao-arrow"></div>
-        </div>
-        <div class="chao-dropdown-list"></div>
-        <input id="${this.$target.attr('id')}" data-role="dropdown">
-    </div>
-</div>
+            <div class="chao-dropdown ${this._options.customClass}" id="chao-${this.$target.attr('id')}">
+                <div class="chao-dropdown-body">
+                    <div class="chao-select">${this._options.defaultTitle}</div>
+                    <div class="chao-arrow"></div>
+                </div>
+                <div class="chao-dropdown-list"></div>
+                <input id="${this.$target.attr('id')}" data-role="dropdown">
+            </div>
         `
         this.$target.replaceWith($.parseHTML(dropdown));
     }
