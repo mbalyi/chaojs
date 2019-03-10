@@ -17,9 +17,11 @@ later
 ```
 
 ## Available components
-- Input
-- Dropdown
-- Button
+- Input [WIP]
+- Dropdown [WIP]
+- Button [WIP]
+- Checkbox-Group
+- Switch
 
 ## Contributing
 Later..

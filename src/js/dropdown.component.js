@@ -24,7 +24,7 @@ var ChaoDropdown = function(options = {}) {
             </div>
         `
         this.$target.replaceWith($.parseHTML(dropdown));
-        this.$element = $(`#chao-${this.$target.attr('id')}`);
+        this.$element = $(`#chao-${this.$target.attr('id')}.chao-dropdown`);
         this.handleBindings();
     }
 
