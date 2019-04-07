@@ -55,7 +55,7 @@ var ChaoCheckboxGroup = function(options = {}) {
         let value = null;
         if ($(`.chao-checkbox-group #chao-${element.key}`).attr('checked') === 'checked') {
             $(`.chao-checkbox-group .chao-${element.key}`).removeClass('chao-checkbox-active');
-            $(`.chao-checkbox-group #chao-${element.key}`).attr('checked', undefined);
+            $(`.chao-checkbox-group #chao-${element.key}`).removeAttr('checked');
             value = false;
         } else {
             $(`.chao-checkbox-group .chao-${element.key}`).addClass('chao-checkbox-active');
