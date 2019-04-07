@@ -1,6 +1,7 @@
 # Chao.JS
 
 Chao.JS is an open-source library with few common HTML component.
+Version: 0.0.1.
 
 ## Installation
 
