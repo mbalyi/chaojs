@@ -14,16 +14,23 @@ var ChaoButton = function(options = {}) {
     this.$target = this._options.target;
     this.$element = null;
 
-    let renderTitle = function() {
-        return `<span class="chao-title">${this._options.title}</span>`;
+    this.renderTitle = function() {
+        let _title = ``;
+
+        if (this._options.title) {
+            _title = this._options.title
+        } else if (this.$target.text()) {
+            _title = this.$target.text();
+        }
+
+        return `<span class="chao-title">${_title}</span>`;
     }
 
-    let renderIcon = function() {
+    this.renderIcon = function() {
         return `<span class="chao-icon ${this._options.icon}"></span>`;
     }
 
     this.init = function(options) {
-        let _btn = null;
         let _icon = ``;
         let _title = ``;
 
@@ -33,20 +40,20 @@ var ChaoButton = function(options = {}) {
 
         switch(this._options.type) {
             case ChaoButtonType.iconBtn:
-                _icon = renderIcon();
+                _icon = this.renderIcon();
                 break;
             case ChaoButtonType.wIconBtn:
-                _title = renderTitle();
-                _icon = renderIcon();
+                _title = this.renderTitle();
+                _icon = this.renderIcon();
                 break;
             case ChaoButtonType.btn:
             default:
-                _title = renderTitle();
+                _title = this.renderTitle();
                 break;
         }
 
         let _btn = `
-            <button class="chao-btn chao-${this._options.type} ${this._options.customClass}" id="chao-${this.$target.attr('id')}" type="button">
+            <button class="chao-btn chao-${this._options.type} ${this._options.customClass} ${this._options.disabled ? 'chao-disabled' : ''}" id="chao-${this.$target.attr('id')}" type="button" ${this._options.disabled ? 'disabled' : ''}>
                 ${_icon}
                 ${_title}
             </button>
@@ -61,24 +68,36 @@ var ChaoButton = function(options = {}) {
     this.handleBindings = function() {
         let self = this;
         $(this.$element).unbind();
-
+        
         $(this.$element).on('click', e => {
-            if (self._options.callback && self._options.callback.onClick) {
+            if (!self._options.disabled && self._options.callback && self._options.callback.onClick) {
                 self._options.callback.onClick(e);
             }
         });
 
-        $(this.$element).on('hover', e => {
-            if (self._options.callback && self._options.callback.onHover) {
-                self._options.callback.onHover(e);
+        $(this.$element).on('mouseenter', e => {
+            if (self._options.callback && self._options.callback.onMouseEnter) {
+                self._options.callback.onMouseEnter(e);
             }
         });
 
-        $(this.$element).on('onmousedown', e => {
-            if (self._options.callback && self._options.callback.onMouseDown) {
+        $(this.$element).on('mousedown', e => {
+            if (!self._options.disabled && self._options.callback && self._options.callback.onMouseDown) {
                 self._options.callback.onMouseDown(e);
             }
         });
+    }
+
+    this.enable = function() {
+        this.$element.removeClass('chao-disabled');
+        this.$element.removeAttr('disabled');
+        this._options.disabled = false;
+    }
+
+    this.disable = function() {
+        this.$element.addClass('chao-disabled');
+        this.$element.attr('disabled', 'disabled');
+        this._options.disabled = true;
     }
 
     this.init(this._options);
