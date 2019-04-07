@@ -26,10 +26,26 @@ var ChaoSwitch = function(options = {}) {
         let self = this;
         $(`.chao-checkbox`, this.$element).unbind();
         $(`.chao-checkbox`, this.$element).on('change', e => {
-            if (self._options.callback && self._options.callback.onChange) {
-                self._options.callback.onChange(e);
+            let _value = this.handleChecked($(e.target));
+
+            if (self._options.onChange) {
+                self._options.onChange({
+                    checked: _value
+                });
             }
         });
+    }
+
+    this.handleChecked = function($element) {
+        let value = null;
+        if ($element.attr('checked') === 'checked') {
+            $element.removeAttr('checked');
+            value = false;
+        } else {
+            $element.attr('checked', 'checked');
+            value = true;
+        }
+        return value;
     }
 
     this.init(this._options);
@@ -37,9 +53,10 @@ var ChaoSwitch = function(options = {}) {
     return this;
 }
 
-jQuery.fn.chaoSwitch = function() {
+jQuery.fn.chaoSwitch = function(options = {}) {
     let _switch = new ChaoSwitch({
-        target: this
+        target: this,
+        options: options
     });
 
     return this;
