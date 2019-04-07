@@ -23,11 +23,11 @@ var ChaoButton = function(options = {}) {
             _title = this.$target.text();
         }
 
-        return `<span class="chao-title">${_title}</span>`;
+        return `<span class="chao-btn-title">${_title}</span>`;
     }
 
     this.renderIcon = function() {
-        return `<span class="chao-icon ${this._options.icon}"></span>`;
+        return `<span class="chao-btn-icon ${this._options.icon}"></span>`;
     }
 
     this.init = function(options) {
