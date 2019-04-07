@@ -24,7 +24,7 @@
     transition: .4s;
 }
 
-.chao-switch .slider:before {
+.chao-switch .chao-slider:before {
     position: absolute;
     content: "";
     border-radius: 50%;
@@ -37,15 +37,15 @@
     transition: .4s;
 }
 
-.chao-switchminput:checked + .slider {
+.chao-switch input:checked + .chao-slider {
     background-color: #2196F3;
 }
 
-.chao-switch input:focus + .slider {
+.chao-switch input:focus + .chao-slider {
     box-shadow: 0 0 1px #2196F3;
 }
 
-.chao-switch input:checked + .slider:before {
+.chao-switch input:checked + .chao-slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);

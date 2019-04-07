@@ -10,7 +10,7 @@ var ChaoSwitch = function(options = {}) {
 
     this.init = function(options) {
         let _switch = `
-            <label class="chao-switch" id="chao-${this.$target.attr('id')}">
+            <label class="chao-switch ${this._options.customClass}" id="chao-${this.$target.attr('id')}">
                 <input type="checkbox" class="chao-checkbox" ${options.defaultChecked ? 'checked' : ''}>
                 <span class="chao-slider"></span>
             </label>
@@ -19,17 +19,33 @@ var ChaoSwitch = function(options = {}) {
         this.$target.replaceWith($.parseHTML(_switch));
         this.$element = $(`#chao-${this.$target.attr('id')}.chao-switch`);
         this.handleBindings();
-        this.$element.data('chaoSwitch', _switch);
+        this.$element.data('chaoSwitch', this);
     }
 
     this.handleBindings = function() {
         let self = this;
         $(`.chao-checkbox`, this.$element).unbind();
         $(`.chao-checkbox`, this.$element).on('change', e => {
-            if (self._options.callback && self._options.callback.onChange) {
-                self._options.callback.onChange(e);
+            let _value = this.handleChecked($(e.target));
+
+            if (self._options.onChange) {
+                self._options.onChange({
+                    checked: _value
+                });
             }
         });
+    }
+
+    this.handleChecked = function($element) {
+        let value = null;
+        if ($element.attr('checked') === 'checked') {
+            $element.removeAttr('checked');
+            value = false;
+        } else {
+            $element.attr('checked', 'checked');
+            value = true;
+        }
+        return value;
     }
 
     this.init(this._options);
@@ -37,9 +53,10 @@ var ChaoSwitch = function(options = {}) {
     return this;
 }
 
-jQuery.fn.chaoSwitch = function() {
+jQuery.fn.chaoSwitch = function(options = {}) {
     let _switch = new ChaoSwitch({
-        target: this
+        target: this,
+        options: options
     });
 
     return this;

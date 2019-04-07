@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JS Switch component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JS Switch component.">
+        <meta name="keywords" content="Chao,Dropdrown,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../src/css/switch.component.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../src/js/switch.component.js"></script>
+    </head>
+    <body style="margin: 125px 50px 500px 400px;">
+
+        <input type="checkbox" id="chaoSwitch1">
+        <input type="checkbox" id="chaoSwitch2">
+        <script>
+            var options1 = {
+                target: $('#chaoSwitch1'),
+                customClass: 'checked-by-default',
+                defaultChecked: true,
+                onChange: function(res) {
+                    console.log('Switch 1: ', res.checked);
+                }
+            };
+
+            var options2 = {
+                target: $('#chaoSwitch2'),
+                customClass: 'unchecked-by-default',
+                defaultChecked: false,
+                onChange: function(res) {
+                    console.log('Switch 2: ', res.checked);
+                }
+            };
+
+            var checkboxGroup1 = new ChaoSwitch(options1);
+            var checkboxGroup2 = new ChaoSwitch(options2);
+        </script>
+
+    </body>
+</html>
