@@ -8,10 +8,10 @@ var ChaoSwitch = function(options = {}) {
     this.$target = this._options.target;
     this.$element = null;
 
-    this.init = function(options) {
+    this.init = function() {
         let _switch = `
             <label class="chao-switch ${this._options.customClass}" id="chao-${this.$target.attr('id')}">
-                <input type="checkbox" class="chao-checkbox" ${options.defaultChecked ? 'checked' : ''}>
+                <input type="checkbox" class="chao-checkbox" ${this._options.defaultChecked ? 'checked' : ''}>
                 <span class="chao-slider"></span>
             </label>
         `;
@@ -48,7 +48,7 @@ var ChaoSwitch = function(options = {}) {
         return value;
     }
 
-    this.init(this._options);
+    this.init();
 
     return this;
 }

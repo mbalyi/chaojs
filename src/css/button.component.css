@@ -1,0 +1,37 @@
+/** Default design */
+.chao-btn {
+    border: 1px solid #2196F3;
+    border-radius: 0.5em;
+    background-color: transparent;
+    padding: 0.5em;
+}
+
+.chao-btn:not(.chao-disabled) {
+    cursor: pointer;
+}
+
+.chao-btn .chao-btn-title,
+.chao-btn .chao-btn-icon {
+    color: #2196F3;
+}
+
+/** Hover design */
+.chao-btn:hover:not(.chao-disabled) {
+    background-color: #2196F3;
+}
+
+.chao-btn:hover:not(.chao-disabled) .chao-btn-title,
+.chao-btn:hover:not(.chao-disabled) .chao-btn-icon {
+    color: #fff;
+}
+
+/** Disabled design */
+.chao-btn.chao-disabled {
+    border-color: #555;
+    background-color: #EEE;
+}
+
+.chao-btn.chao-disabled .chao-btn-title,
+.chao-btn.chao-disabled .chao-btn-icon {
+    color: #555;
+}
