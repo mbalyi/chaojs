@@ -1,0 +1,38 @@
+.chao-checkbox-group {
+    display: flex;
+    width: 100%;
+}
+
+.chao-checkbox-group input {
+    display: none;
+}
+
+.chao-checkbox-group .chao-checkbox-btn {
+    cursor: pointer;
+}
+
+.chao-checkbox-group .chao-checkbox-btn {
+    border: 1px solid #2196F3;
+    background-color: transparent;
+    padding: 0.5em;
+}
+
+.chao-checkbox-group .chao-checkbox-title {
+    color: #2196F3;
+}
+
+.chao-checkbox-group .chao-checkbox-btn.chao-checkbox-active {
+    background-color: #2196F3;
+}
+
+.chao-checkbox-group .chao-checkbox-active .chao-checkbox-title {
+    color: #fff;
+}
+
+.chao-checkbox-group .chao-checkbox-btn:first-child {
+    border-radius: 0.5em 0 0 0.5em;
+}
+
+.chao-checkbox-group .chao-checkbox-btn:last-child {
+    border-radius: 0 0.5em 0.5em 0;
+}
