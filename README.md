@@ -49,6 +49,7 @@ More examples are available under [examples](https://github.com/mbalyi/chaojs/tr
 - Switch
 
 ## Scope of beta release
+- Date, Time, DateTime Picker
 - Input validation
 - Notifications
 - Dialogs
