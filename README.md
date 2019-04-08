@@ -1,7 +1,7 @@
 # Chao.JS
 
 Chao.JS is an open-source library with few common HTML component.
-Version: 0.0.3.
+Version: 0.0.4.
 
 ## Installation and import
 
@@ -38,11 +38,14 @@ More examples are available under [examples](https://github.com/mbalyi/chaojs/tr
     };
 
     var btn = new ChaoButton(options);
+
+    /** Or use the jQuery init functions */
+    var btn = $('#chaoBtn').chaoButton({});
 </script>
 ```
 
 ## Available components
-- Input [WIP]
+- Input
 - Dropdown [WIP]
 - Button
 - Checkbox-Group
