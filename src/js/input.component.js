@@ -62,7 +62,7 @@ var ChaoInput = function(options = {}) {
     }
 
     this.getType = function() {
-        let _type = ``;
+        let _type = `text`;
 
         if (this._options.type) {
             _type = this._options.type;
@@ -98,10 +98,11 @@ var ChaoInput = function(options = {}) {
             let _input = `<input type="${_type}" 
                                 class="chao-input chao-${this._options.type} ${this._options.customClass} ${this._options.disabled ? 'chao-disabled' : ''}" 
                                 id="chao-${this.$target.attr('id')}" 
-                                name="${_name}"
-                                placeholder="${_placeholder}"
-                                title="${_title}"
-                                value="${_value}"
+                                ${_name ? `name="${_name}"` : ''}
+                                ${_placeholder ? `placeholder="${_placeholder}"` : ''}
+                                ${_title ? `title="${_title}"` : ''}
+                                ${_value ? `value="${_value}"` : ''}
+                                ${_name ? `name="${_name}"` : ''}
                                 ${this._options.disabled ? 'disabled' : ''}>`;
 
             this.$target.replaceWith($.parseHTML(_input));
@@ -143,7 +144,7 @@ var ChaoInput = function(options = {}) {
 
         $(this.$element).on('keypress', e => {
             if (self._options.callback && self._options.callback.onKeypress) {
-                self._options.callback.onCKeypress(e);
+                self._options.callback.onKeypress(e);
             }
         });
     }
@@ -166,10 +167,8 @@ var ChaoInput = function(options = {}) {
 }
 
 jQuery.fn.chaoInput = function(options = {}) {
-    let _input = new ChaoInput({
-        target: this,
-        options: options
-    });
+    options.target = this;
+    let _input = new ChaoInput(options);
 
     return _input;
 };
