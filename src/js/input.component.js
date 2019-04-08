@@ -30,9 +30,27 @@ var ChaoInput = function(options = {}) {
             }
         });
 
-        $(this.$element).on('mouseenter', e => {
-            if (self._options.callback && self._options.callback.onMouseEnter) {
-                self._options.callback.onMouseEnter(e);
+        $(this.$element).on('focus', e => {
+            if (self._options.callback && self._options.callback.onFocus) {
+                self._options.callback.onFocus(e);
+            }
+        });
+
+        $(this.$element).on('blur', e => {
+            if (self._options.callback && self._options.callback.onBlur) {
+                self._options.callback.onBlur(e);
+            }
+        });
+
+        $(this.$element).on('change', e => {
+            if (self._options.callback && self._options.callback.onChange) {
+                self._options.callback.onChange(e);
+            }
+        });
+
+        $(this.$element).on('keypress', e => {
+            if (self._options.callback && self._options.callback.onKeypress) {
+                self._options.callback.onCKeypress(e);
             }
         });
     }
