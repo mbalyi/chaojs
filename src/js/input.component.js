@@ -9,15 +9,108 @@ var ChaoInput = function(options = {}) {
     this.$target = this._options.target;
     this.$element = null;
 
+    this.getValue = function() {
+        let _value = ``;
+
+        if (this._options.value) {
+            _value = this._options.value;
+        } else if (this.$target.val()) {
+            _value = this.$target.val();
+            this._options.value = _value;
+        }
+
+        return _value;
+    }
+
+    this.getName = function() {
+        let _name = ``;
+
+        if (this._options.name) {
+            _name = this._options.name;
+        } else if (this.$target.attr('name')) {
+            _name = this.$target.attr('name');
+            this._options.name = _name;
+        }
+
+        return _name;
+    }
+
+    this.getPlaceHolder = function() {
+        let _placeholder = ``;
+
+        if (this._options.placeholder) {
+            _placeholder = this._options.placeholder;
+        } else if (this.$target.attr('placeholder')) {
+            _placeholder = this.$target.attr('placeholder');
+            this._options.placeholder = _placeholder;
+        }
+
+        return _placeholder;
+    }
+
+    this.getTitle = function() {
+        let _title = ``;
+
+        if (this._options.title) {
+            _title = this._options.title;
+        } else if (this.$target.attr('title')) {
+            _title = this.$target.attr('title');
+            this._options.title = _title;
+        }
+
+        return _title;
+    }
+
+    this.getType = function() {
+        let _type = ``;
+
+        if (this._options.type) {
+            _type = this._options.type;
+        } else if (this.$target.attr('type')) {
+            _type = this.$target.attr('type');
+            this._options.type = _type;
+        }
+
+        return _type;
+    }
+
+    let TypeError = function(msg) {
+        this.name = 'TypeError';
+        this.message = `Chao.JS input component doesn't support your selected type!\nSupported types:\n${msg}`;
+        return this;
+    }
+
+    this.validateType = function() {
+        const supportedTypes = ['text', 'email', 'number', 'password', 'search', 'url'];
+
+        if (!supportedTypes.includes(this._options._type)) {
+            throw new TypeError(supportedTypes);
+        }
+    }
+
     this.init = function(options) {
-        let _input = ``;
+        try {
+            let _value = this.getValue();
+            let _name = this.getName();
+            let _title = this.getTitle();
+            let _placeholder = this.getPlaceHolder();
+            let _type = this.getType();
+            let _input = `<input type="${_type}" 
+                                class="chao-input chao-${this._options.type} ${this._options.customClass} ${this._options.disabled ? 'chao-disabled' : ''}" 
+                                id="chao-${this.$target.attr('id')}" 
+                                name="${_name}"
+                                placeholder="${_placeholder}"
+                                title="${_title}"
+                                value="${_value}"
+                                ${this._options.disabled ? 'disabled' : ''}>`;
 
-        /** Init and renderer logic */
-
-        this.$target.replaceWith($.parseHTML(_input));
-        this.$element = $(`#chao-${this.$target.attr('id')}.chao-input`);
-        this.handleBindings();
-        this.$element.data('chaoInput', this);
+            this.$target.replaceWith($.parseHTML(_input));
+            this.$element = $(`#chao-${this.$target.attr('id')}.chao-input`);
+            this.handleBindings();
+            this.$element.data('chaoInput', this);
+        } catch (e) {
+            console.error(`Error happened during the Chao.JS input component initialization. \n`, e);
+        }
     }
 
     this.handleBindings = function() {
@@ -78,5 +171,5 @@ jQuery.fn.chaoInput = function(options = {}) {
         options: options
     });
 
-    return this;
+    return _input;
 };

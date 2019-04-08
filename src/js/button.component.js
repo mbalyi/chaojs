@@ -18,7 +18,7 @@ var ChaoButton = function(options = {}) {
         let _title = ``;
 
         if (this._options.title) {
-            _title = this._options.title
+            _title = this._options.title;
         } else if (this.$target.text()) {
             _title = this.$target.text();
         }
