@@ -197,3 +197,10 @@ var ChaoDropdown = function(options = {}) {
     this.init();
     return this;
 }
+
+jQuery.fn.chaoDropdown = function(options = {}) {
+    options.target = this;
+    let _dropdown = new ChaoDropdown(options);
+
+    return _dropdown;
+};

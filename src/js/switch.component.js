@@ -54,10 +54,8 @@ var ChaoSwitch = function(options = {}) {
 }
 
 jQuery.fn.chaoSwitch = function(options = {}) {
-    let _switch = new ChaoSwitch({
-        target: this,
-        options: options
-    });
+    options.target = this;
+    let _switch = new ChaoSwitch(options);
 
-    return this;
+    return _switch;
 };
