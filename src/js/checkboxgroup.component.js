@@ -85,7 +85,7 @@ var ChaoCheckboxGroup = function(options = {}) {
 
 jQuery.fn.chaoCheckboxGroup = function(options = {}) {
     options.target = this;
-    let _switch = new ChaoCheckboxGroup(options;
+    let _switch = new ChaoCheckboxGroup(options);
 
     return _switch;
 };
