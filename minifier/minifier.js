@@ -1,10 +1,10 @@
 const minify = require('./node_modules/@node-minify/core');
 const sqwish = require('./node_modules/@node-minify/sqwish');
-const gcc = require('./node_modules/@node-minify/google-closure-compiler');
+const babel = require('./node_modules/@node-minify/babel-minify');
 
 console.info('Minifier of JS files have been started.');
 minify({
-    compressor: gcc,
+    compressor: babel,
     input: './../src/js/**/*.js',
     output: './../chao.min.js',
     type: 'js',

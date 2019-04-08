@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JS Input component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JS Input component.">
+        <meta name="keywords" content="Chao,Input,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../src/css/input.component.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../src/js/input.component.js"></script>
+    </head>
+    <body style="margin: 125px 50px 500px 400px;">
+
+        <input type="text" id="chaoInput1" value="Default Text Field" title="First button">
+        <input id="chaoInput2">
+        <script>
+            var options1 = {
+                target: $('#chaoInput1'),
+                disabled: false,
+                callback: {
+                    onChange: function(res) {
+                        console.log('Input1 change event: ', res);
+                    },
+                    onKeypress: function(res) {
+                        console.log('Input1 keypress event: ', res);
+                    }
+                }
+            };
+
+            var options2 = {
+                name: 'secondBtn',
+                type: 'number',
+                placeholder: '2',
+                disabled: true,
+                callback: {
+                    onClick: function(res) {
+                        console.log('Input2 click event: ', res);
+                    },
+                    onFocus: function(res) {
+                        console.log('Input2 focus event: ', res);
+                    },
+                    onBlur: function(res) {
+                        console.log('Input2 blur event: ', res);
+                    }
+                }
+            };
+
+            var input1 = new ChaoInput(options1);
+            var input2 = $('#chaoInput2').chaoInput(options2);
+        </script>
+
+    </body>
+</html>

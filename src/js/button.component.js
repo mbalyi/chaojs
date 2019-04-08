@@ -18,7 +18,7 @@ var ChaoButton = function(options = {}) {
         let _title = ``;
 
         if (this._options.title) {
-            _title = this._options.title
+            _title = this._options.title;
         } else if (this.$target.text()) {
             _title = this.$target.text();
         }
@@ -106,10 +106,8 @@ var ChaoButton = function(options = {}) {
 }
 
 jQuery.fn.chaoButton = function(options = {}) {
-    let _button = new ChaoButton({
-        target: this,
-        options: options
-    });
+    options.target = this;
+    let _button = new ChaoButton(options);
 
-    return this;
+    return _button;
 };

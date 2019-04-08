@@ -83,10 +83,9 @@ var ChaoCheckboxGroup = function(options = {}) {
     return this.secureState();
 }
 
-jQuery.fn.chaoCheckboxGroup = function() {
-    let _switch = new ChaoCheckboxGroup({
-        target: this
-    });
+jQuery.fn.chaoCheckboxGroup = function(options = {}) {
+    options.target = this;
+    let _switch = new ChaoCheckboxGroup(options);
 
-    return this;
+    return _switch;
 };

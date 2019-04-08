@@ -17,6 +17,6 @@
     "devDependencies": {
         "@node-minify/core": "4.0.5",
         "@node-minify/sqwish": "4.1.0",
-        "@node-minify/google-closure-compiler": "4.0.5"
+        "@node-minify/babel-minify": "4.0.5"
     }
 }

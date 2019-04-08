@@ -1,0 +1,13 @@
+/** Default design */
+.chao-input {
+    border: 1px solid #2196F3;
+    border-radius: 0.5em;
+    background-color: transparent;
+    padding: 0.5em;
+}
+
+/** Disabled design */
+.chao-input.chao-disabled {
+    border-color: #555;
+    background-color: #EEE;
+}
