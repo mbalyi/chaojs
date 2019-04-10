@@ -93,6 +93,7 @@ var ChaoValidator = function(options = {}) {
                 if ($(_element).siblings().length > 0) {
                     this._options.lazyLayout = false;
                     console.error(`Lazy Layout was turn off because the checker found minimum one field which has sibling(s).\n`, $(_element));
+                    return;
                 }
             }
             this.$target.addClass('chao-validator');
