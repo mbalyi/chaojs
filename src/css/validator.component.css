@@ -9,18 +9,15 @@
 }
 
 .chao-tooltip.chao-tooltip-position-right {
-    left: 1em;
+    right: 0em;
+    top: 0.3em;
 }
 
-.chao-tooltip.chao-tooltip-position-left {
-    right: 1em;
-}
-
-.chao-tooltip.chao-tooltip-position-up {
+.chao-tooltip.chao-tooltip-position-top {
     bottom: 2em;
 }
 
-.chao-tooltip.chao-tooltip-position-down {
+.chao-tooltip.chao-tooltip-position-bottom {
     top: 2em;
 }
 
