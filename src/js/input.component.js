@@ -122,7 +122,7 @@ var ChaoInput = function(options = {}) {
             let _placeholder = this.getPlaceHolder();
             let _type = this.getType();
             let _input = `<input type="${_type}" 
-                                class="chao-input chao-${this._options.type} ${this._options.customClass} ${this._options.disabled ? 'chao-disabled' : ''}" 
+                                class="chao-input chao-${this._options.type} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" 
                                 id="chao-${this.$target.attr('id')}" 
                                 ${_name ? `name="${_name}"` : ''}
                                 ${_placeholder ? `placeholder="${_placeholder}"` : ''}

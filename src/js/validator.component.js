@@ -40,7 +40,7 @@ var ChaoValidator = function(options = {}) {
     this.renderDefaultTooltip = function(msg = '') {
         let _msg = `<span class='chao-tooltip-message'>${msg}</span>`;
         let _icon = `<span class='chao-tooltip-icon ${this._options.iconClass}'></span>`;
-        let _tooltip = `<div class='chao-tooltip chao-invalid-message chao-tooltip-position-${this._options.position} ${this._options.customClass}'>
+        let _tooltip = `<div class='chao-tooltip chao-invalid-message chao-tooltip-position-${this._options.position} ${this._options.customClass ? this._options.customClass : ''}'>
                             ${this._options.icon ? _icon : ''}
                             ${this._options.msg ? _msg : ''}
                         </div>`;
@@ -59,7 +59,14 @@ var ChaoValidator = function(options = {}) {
         $target.removeClass('chao-invalid-content');
     }
 
+    const POSITIONS = Object.freeze({ top: 'top', bottom: 'bottom', right: 'right' });
+    this.validatePosition = function(position) {
+        return POSITIONS[position] !== undefined ? position : POSITIONS.right;
+    }
+
     this.init = function() {
+        this.$target.addClass('chao-validator');
+
         if (this._options.rules) {
             this._rules = {...this._options.rules, ...this._rules};
         }
@@ -68,7 +75,7 @@ var ChaoValidator = function(options = {}) {
             this._msgs = {...this._options.messages, ...this._msgs};
         }
 
-        this._options.position = this._options.position ? this._options.position : 'right';
+        this._options.position = this.validatePosition(this._options.position);
         this._options.icon = this._options.icon === undefined || this._options.icon === null ? true : this._options.icon;
         this._options.msg = this._options.msg === undefined || this._options.msg === null ? true : this._options.msg;
         this._options.iconClass = this._options.iconClass ? this._options.iconClass : 'fa fa-exclamation-circle';

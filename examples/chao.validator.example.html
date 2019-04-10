@@ -9,6 +9,7 @@
         
         <link rel="stylesheet" type="text/css" href="./../src/css/input.component.css">
         <link rel="stylesheet" type="text/css" href="./../src/css/button.component.css">
+        <link rel="stylesheet" type="text/css" href="./../src/css/validator.component.css">
         <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
 
         <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
@@ -38,7 +39,7 @@
 
             var input1 = $('#chaoInput1').chaoInput(options1);
             $('#chaoInput2').chaoInput();
-            var validator = $('#form').chaoValidator();
+            var validator = $('#form').chaoValidator({ position: 'down' });
             $('#validator').chaoButton({
                 callback: {
                     onClick: function(res) {

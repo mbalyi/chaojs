@@ -1,0 +1,29 @@
+.chao-validator {
+    position: relative;
+}
+
+.chao-tooltip.chao-invalid-message {
+    position: absolute;
+    background-color: transparent;
+    color: #C21807;
+}
+
+.chao-tooltip.chao-tooltip-position-right {
+    left: 1em;
+}
+
+.chao-tooltip.chao-tooltip-position-left {
+    right: 1em;
+}
+
+.chao-tooltip.chao-tooltip-position-up {
+    bottom: 2em;
+}
+
+.chao-tooltip.chao-tooltip-position-down {
+    top: 2em;
+}
+
+.chao-input.chao-invalid-content {
+    border-color: #C21807;
+}
