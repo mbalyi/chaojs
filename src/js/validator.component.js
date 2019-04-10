@@ -10,7 +10,7 @@ var ChaoValidator = function(options = {}) {
     this._rules = {
         _requiredRule: function(_input) {
             let _value = _input.val();
-            return !_input.attr('required') === 'required' && _value !== '' && _value !== null;
+            return _value !== '' && _value !== null;
         }
     }
     this._msgs = {
@@ -18,14 +18,14 @@ var ChaoValidator = function(options = {}) {
     }
 
     this.validate = function() {
-        for (let _element of $('input:required, textarea:required', this._target)) {
+        for (let _element of $('input:required, textarea:required', this.$target)) {
             let _validationResult = true;
-            for (let _key in _rules) {
-                if (!_rules[_key]($(_element))) {
-                    if (_msgs[_key] === null || _msgs[_key] === undefined) {
-                        this.render($(_element), _msgs._requiredRule);
-                    } else {
-                        this.render($(_element), _msgs[_key]);
+            for (let _key in this._rules) {
+                if (!this._rules[_key]($(_element))) {
+                    if ((this._msgs[_key] === null || this._msgs[_key] === undefined) && !$(_element).hasClass('chao-invalid-content')) {
+                        this.render($(_element), this._msgs._requiredRule);
+                    } else if (!$(_element).hasClass('chao-invalid-content')) {
+                        this.render($(_element), this._msgs[_key]);
                     }
                     _validationResult = false;
                 }
@@ -50,7 +50,7 @@ var ChaoValidator = function(options = {}) {
     this.render = function($target, msg) {
         let _tooltip = this._options.customTooltip ? this._options.customTooltip.replace('\${msg}', msg) : this.renderDefaultTooltip(msg);
 
-        $target.insertAfter($.parseHTML(_tooltip));
+        $target.after($.parseHTML(_tooltip));
         $target.addClass('chao-invalid-content');
     }
 
@@ -69,6 +69,9 @@ var ChaoValidator = function(options = {}) {
         }
 
         this._options.position = this._options.position ? this._options.position : 'right';
+        this._options.icon = this._options.icon === undefined || this._options.icon === null ? true : this._options.icon;
+        this._options.msg = this._options.msg === undefined || this._options.msg === null ? true : this._options.msg;
+        this._options.iconClass = this._options.iconClass ? this._options.iconClass : 'fa fa-exclamation-circle';
     }
 
     this.init();

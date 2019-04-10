@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JS Validatior component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JS Validator component.">
+        <meta name="keywords" content="Chao,Validator,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../src/css/input.component.css">
+        <link rel="stylesheet" type="text/css" href="./../src/css/button.component.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../src/js/input.component.js"></script>
+        <script type="application/javascript" src="./../src/js/validator.component.js"></script>
+        <script type="application/javascript" src="./../src/js/button.component.js"></script>
+    </head>
+    <body style="margin: 125px 50px 500px 400px;">
+
+        <div id="form" style="display: flex;">
+            <input type="text" id="chaoInput1" title="Validation field" required>
+            <input type="text" id="chaoInput2">
+            <button type="button" id="validator">Validate</button>
+        </div>
+        <script>
+            var options1 = {
+                disabled: false,
+                callback: {
+                    onChange: function(res) {
+                        console.log('Input1 change event: ', res);
+                    },
+                    onKeypress: function(res) {
+                        console.log('Input1 keypress event: ', res);
+                    }
+                }
+            };
+
+            var input1 = $('#chaoInput1').chaoInput(options1);
+            $('#chaoInput2').chaoInput();
+            var validator = $('#form').chaoValidator();
+            $('#validator').chaoButton({
+                callback: {
+                    onClick: function(res) {
+                        validator.validate();
+                        console.log('Validation finished.');
+                    }
+                }
+            });
+        </script>
+
+    </body>
+</html>
