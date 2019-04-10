@@ -103,11 +103,15 @@ var ChaoValidator = function(options = {}) {
     this.init = function() {
         /** Merge custom rules and messages with default rules and messages. */
         if (this._options.rules) {
-            this._rules = {...this._options.rules, ...this._rules};
+            // Minifier can't compile EcmaScript 2018 yet.
+            // this._rules = {...this._options.rules, ...this._rules};
+            this.rules = Object.assign(this._options.rules, this._rules);
         }
 
         if (this._options.messages) {
-            this._msgs = {...this._options.messages, ...this._msgs};
+            // Minifier can't compile EcmaScript 2018 yet.
+            // this._msgs = {...this._options.messages, ...this._msgs};
+            this._msgs = Object.assign(this._options.messages, this._msgs);
         }
 
         /** Check Lazy Layout is possible on DOM structure or not. */
