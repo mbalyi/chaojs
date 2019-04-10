@@ -103,13 +103,13 @@ var ChaoValidator = function(options = {}) {
     this.init = function() {
         /** Merge custom rules and messages with default rules and messages. */
         if (this._options.rules) {
-            // Minifier can't compile EcmaScript 2018 yet.
+            // Minifier can't compile EcmaScript 2015 yet.
             // this._rules = {...this._options.rules, ...this._rules};
-            this.rules = Object.assign(this._options.rules, this._rules);
+            this._rules = Object.assign(this._options.rules, this._rules);
         }
 
         if (this._options.messages) {
-            // Minifier can't compile EcmaScript 2018 yet.
+            // Minifier can't compile EcmaScript 2015 yet.
             // this._msgs = {...this._options.messages, ...this._msgs};
             this._msgs = Object.assign(this._options.messages, this._msgs);
         }
