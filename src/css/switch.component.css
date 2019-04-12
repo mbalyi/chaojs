@@ -19,9 +19,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #CCC;
     -webkit-transition: .4s;
     transition: .4s;
+}
+
+.chao-switch.chao-disabled .chao-slider {
+    background-color: #BBB;
 }
 
 .chao-switch .chao-slider:before {
@@ -37,8 +41,16 @@
     transition: .4s;
 }
 
+.chao-switch.chao-disabled input:checked + .chao-slider:before {
+    background-color: #777;
+}
+
 .chao-switch input:checked + .chao-slider {
     background-color: #2196F3;
+}
+
+.chao-switch.chao-disabled input:checked + .chao-slider {
+    background-color: #999;
 }
 
 .chao-switch input:focus + .chao-slider {
