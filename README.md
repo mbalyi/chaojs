@@ -1,7 +1,10 @@
 # Chao.JS
+## A JavaScript Component Library
+Chao.JS is an open-source library with few common HTML component for JavaScript. It's depending on jQuery, and it combinates the easy usability of jQuery and customizable, lightweight renderer process of more complex frameworks.
 
-Chao.JS is an open-source library with few common HTML component.
-Version: 0.0.5.
+Most of the solutions is similar to kendoUI, but with many simplification and with unique CSS design.
+
+**Version**: 0.0.5.
 
 ## Installation and import
 
