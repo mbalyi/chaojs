@@ -10,8 +10,8 @@ var ChaoSwitch = function(options = {}) {
 
     this.init = function() {
         let _switch = `
-            <label class="chao-switch ${this._options.customClass}" id="chao-${this.$target.attr('id')}">
-                <input type="checkbox" class="chao-checkbox" ${this._options.defaultChecked ? 'checked' : ''}>
+            <label class="chao-switch ${this._options.customClass} ${this._options.disabled ? 'chao-disabled' : ''}" id="chao-${this.$target.attr('id')}">
+                <input type="checkbox" class="chao-checkbox" ${this._options.defaultChecked ? 'checked' : ''} ${this._options.disabled ? 'disabled' : ''}>
                 <span class="chao-slider"></span>
             </label>
         `;
@@ -47,6 +47,8 @@ var ChaoSwitch = function(options = {}) {
         }
         return value;
     }
+
+    this.enable = ChaoFormService.getInstance().enable;
 
     this.init();
 
