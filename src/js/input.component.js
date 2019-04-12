@@ -88,6 +88,32 @@ var ChaoInput = function(options = {}) {
         }
     }
 
+    this.getDisabled = function() {
+        let _disabled = ``;
+
+        if (this._options.disabled) {
+            _disabled = this._options.disabled;
+        } else if (this.$target.attr('disabled')) {
+            _disabled = this.$target.attr('disabled');
+            this._options.type = _disabled;
+        }
+
+        return _disabled;
+    }
+
+    this.getRequired = function() {
+        let _required = ``;
+
+        if (this._options.required) {
+            _required = this._options.required;
+        } else if (this.$target.attr('required')) {
+            _required = this.$target.attr('required');
+            this._options.required = _required;
+        }
+
+        return _required;
+    }
+
     this.init = function(options) {
         try {
             let _value = this.getValue();
@@ -96,14 +122,15 @@ var ChaoInput = function(options = {}) {
             let _placeholder = this.getPlaceHolder();
             let _type = this.getType();
             let _input = `<input type="${_type}" 
-                                class="chao-input chao-${this._options.type} ${this._options.customClass} ${this._options.disabled ? 'chao-disabled' : ''}" 
+                                class="chao-input chao-${this._options.type} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" 
                                 id="chao-${this.$target.attr('id')}" 
                                 ${_name ? `name="${_name}"` : ''}
                                 ${_placeholder ? `placeholder="${_placeholder}"` : ''}
                                 ${_title ? `title="${_title}"` : ''}
                                 ${_value ? `value="${_value}"` : ''}
                                 ${_name ? `name="${_name}"` : ''}
-                                ${this._options.disabled ? 'disabled' : ''}>`;
+                                ${this.getDisabled()}
+                                ${this.getRequired()}>`;
 
             this.$target.replaceWith($.parseHTML(_input));
             this.$element = $(`#chao-${this.$target.attr('id')}.chao-input`);

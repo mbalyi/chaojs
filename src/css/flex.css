@@ -1,0 +1,23 @@
+.flexContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: baseline;
+}
+
+.flexContainer.flexColumn {
+    flex-direction: column;
+}
+
+.flexContainer .flexItem {
+    flex-grow: 1;
+    margin: 0.1em;
+}
+
+.flexContainer .flexItem:first-child {
+    margin-left: 0;
+}
+
+.flexContainer .flexItem:last-child {
+    margin-right: 0;
+}

@@ -1,0 +1,31 @@
+.chao-validator.chao-validator-lazy {
+    position: relative;
+}
+
+.chao-validator-lazy .chao-tooltip.chao-invalid-message {
+    position: absolute;
+    display: block;
+}
+
+.chao-tooltip.chao-invalid-message {
+    display: inline-block;
+    background-color: transparent;
+    color: #C21807;
+}
+
+.chao-validator-lazy .chao-tooltip.chao-tooltip-position-right {
+    right: 0em;
+    top: 0.3em;
+}
+
+.chao-validator-lazy .chao-tooltip.chao-tooltip-position-top {
+    bottom: 2em;
+}
+
+.chao-validator-lazy .chao-tooltip.chao-tooltip-position-bottom {
+    top: 2em;
+}
+
+.chao-input.chao-invalid-content {
+    border-color: #C21807;
+}
