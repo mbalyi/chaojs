@@ -14,9 +14,9 @@ var ChaoCheckboxGroup = function(options = {}) {
         let inputs = '';
         this._data.forEach(element => {
             inputs += `
-                <div class="chao-checkbox-btn chao-${element.key} ${element.value ? 'chao-checkbox-active' : ''}">
+                <div class="chao-checkbox-btn chao-${element.key} ${element.value ? 'chao-checkbox-active' : ''} ${element.disabled ? 'chao-disabled' : ''}">
                     <span class="chao-checkbox-title">${element.title}</span>
-                    <input type="checkbox" id="chao-${element.key}" ${element.value ? 'checked' : ''}>
+                    <input type="checkbox" id="chao-${element.key}" ${element.value ? 'checked' : ''} ${element.disabled ? 'disabled' : ''}>
                 </div>
             `;
         });
@@ -30,36 +30,38 @@ var ChaoCheckboxGroup = function(options = {}) {
         let self = this;
         this._data.forEach(element => {
             let _element = element;
-            $(`.chao-checkbox-btn.chao-${_element.key}`).on('click', e => {
-                _element.value = self.handleChecked(_element);
+            $(`.chao-checkbox-btn.chao-${_element.key}`, self.$element).on('click', e => {
+                if (!$(e.currentTarget).hasClass('chao-disabled')) {
+                    _element.value = self.handleChecked(self, _element);
 
-                if (_element.onChange) {
-                    _element.onChange(_element.value);
-                }
-                
-                if (self._options.onChange) {
-                    self._options.onChange({
-                        data: self._data,
-                        selected: self._data.filter(d => {
-                            if (d.value) {
-                                return d.key;
-                            }
-                        })
-                    });
+                    if (_element.onChange) {
+                        _element.onChange(_element.value);
+                    }
+                    
+                    if (self._options.onChange) {
+                        self._options.onChange({
+                            data: self._data,
+                            selected: self._data.filter(d => {
+                                if (d.value) {
+                                    return d.key;
+                                }
+                            })
+                        });
+                    }
                 }
             });
         });
     }
 
-    this.handleChecked = function(element) {
+    this.handleChecked = function(self, element) {
         let value = null;
-        if ($(`.chao-checkbox-group #chao-${element.key}`).attr('checked') === 'checked') {
-            $(`.chao-checkbox-group .chao-${element.key}`).removeClass('chao-checkbox-active');
-            $(`.chao-checkbox-group #chao-${element.key}`).removeAttr('checked');
+        if ($(`#chao-${element.key}`, self.$element).attr('checked') === 'checked') {
+            $(`.chao-${element.key}`, self.$element).removeClass('chao-checkbox-active');
+            $(`#chao-${element.key}`, self.$element).removeAttr('checked');
             value = false;
         } else {
-            $(`.chao-checkbox-group .chao-${element.key}`).addClass('chao-checkbox-active');
-            $(`.chao-checkbox-group #chao-${element.key}`).attr('checked', 'checked');
+            $(`.chao-${element.key}`, self.$element).addClass('chao-checkbox-active');
+            $(`#chao-${element.key}`, self.$element).attr('checked', 'checked');
             value = true;
         }
         return value;
@@ -72,15 +74,60 @@ var ChaoCheckboxGroup = function(options = {}) {
         }
     };
 
+    this.enable = function(_state = true, _rankOrKey = undefined) {
+        if (_rankOrKey === undefined) {
+            if (_state) {
+                this.$element.removeClass('chao-disabled');
+            } else {
+                this.$element.addClass('chao-disabled');
+            }
+            for (let _element of this._data) {
+                let _partElement = Object.assign({
+                    enable: ChaoFormService.getInstance().enable
+                }, _element);
+                _partElement._options = {
+                    disabled: _partElement.disabled
+                }
+                _partElement.$element = $(`.chao-checkbox-btn.chao-${_element.key}`, this.$element);
+                
+                _partElement.enable(_state);
+                _partElement = null;
+            }
+        } else if (typeof _rankOrKey === 'number') {
+            let _partElement = Object.assign({
+                enable: ChaoFormService.getInstance().enable
+            }, this._data[_rankOrKey]);
+            _partElement._options = {
+                disabled: _partElement.disabled
+            }
+            _partElement.$element = $(`.chao-checkbox-btn.chao-${this._data[_rankOrKey].key}`, this.$element);
+            
+            _partElement.enable(_state);
+            _partElement = null;
+        } else if (typeof _rankOrKey === 'string') {
+            let _data = this._data.find(data => {if (data.key === _rankOrKey) {return data;}});
+            let _partElement = Object.assign({
+                enable: ChaoFormService.getInstance().enable
+            }, _data);
+            _partElement._options = {
+                disabled: _partElement.disabled
+            }
+            _partElement.$element = $(`.chao-checkbox-btn.chao-${_rankOrKey}`, this.$element);
+            
+            _partElement.enable(_state);
+            _partElement = null;
+        }
+    }
+
     this.init = function() {
         this.render();
         this.handleBindings();
-        this.$element.data('chaoCheckboxGroup', this.secureState());
+        this.$element.data('chaoCheckboxGroup', this);// this.secureState());
     }
 
     this.init();
 
-    return this.secureState();
+    return this;// .secureState();
 }
 
 jQuery.fn.chaoCheckboxGroup = function(options = {}) {
