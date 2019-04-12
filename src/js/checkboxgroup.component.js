@@ -74,8 +74,8 @@ var ChaoCheckboxGroup = function(options = {}) {
         }
     };
 
-    this.enable = function(_state = true, _rankOrKey = undefined) {
-        if (_rankOrKey === undefined) {
+    this.enable = function(_state = true, _key = undefined) {
+        if (_key === undefined) {
             if (_state) {
                 this.$element.removeClass('chao-disabled');
             } else {
@@ -93,26 +93,15 @@ var ChaoCheckboxGroup = function(options = {}) {
                 _partElement.enable(_state);
                 _partElement = null;
             }
-        } else if (typeof _rankOrKey === 'number') {
-            let _partElement = Object.assign({
-                enable: ChaoFormService.getInstance().enable
-            }, this._data[_rankOrKey]);
-            _partElement._options = {
-                disabled: _partElement.disabled
-            }
-            _partElement.$element = $(`.chao-checkbox-btn.chao-${this._data[_rankOrKey].key}`, this.$element);
-            
-            _partElement.enable(_state);
-            _partElement = null;
-        } else if (typeof _rankOrKey === 'string') {
-            let _data = this._data.find(data => {if (data.key === _rankOrKey) {return data;}});
+        } else {
+            let _data = this._data.find(data => {if (data.key === _key) {return data;}});
             let _partElement = Object.assign({
                 enable: ChaoFormService.getInstance().enable
             }, _data);
             _partElement._options = {
                 disabled: _partElement.disabled
             }
-            _partElement.$element = $(`.chao-checkbox-btn.chao-${_rankOrKey}`, this.$element);
+            _partElement.$element = $(`.chao-checkbox-btn.chao-${_key}`, this.$element);
             
             _partElement.enable(_state);
             _partElement = null;
