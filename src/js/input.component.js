@@ -176,17 +176,7 @@ var ChaoInput = function(options = {}) {
         });
     }
 
-    this.enable = function() {
-        this.$element.removeClass('chao-disabled');
-        this.$element.removeAttr('disabled');
-        this._options.disabled = false;
-    }
-
-    this.disable = function() {
-        this.$element.addClass('chao-disabled');
-        this.$element.attr('disabled', 'disabled');
-        this._options.disabled = true;
-    }
+    this.enable = ChaoFormService.getInstance().enable;
 
     this.init(this._options);
 
