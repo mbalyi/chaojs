@@ -25,9 +25,14 @@ var ChaoValidator = function(options = {}) {
 
     this.validateOne = function($element, rule = undefined) {
         let _validationResult = true;
-        for (let _key in this._rules) {
-            let res = this._validate($element, _key);
-            _validationResult = !res ? res : _validationResult;
+
+        if (rule !== undefined) {
+            _validationResult = this._validate($element, rule);
+        } else {
+            for (let _key in this._rules) {
+                let res = this._validate($element, _key);
+                _validationResult = !res ? res : _validationResult;
+            }
         }
 
         if (_validationResult && $element.hasClass('chao-invalid-content')) {
@@ -136,7 +141,7 @@ var ChaoValidator = function(options = {}) {
 
 jQuery.fn.chaoValidator = function(options = {}) {
     options.target = this;
-    let _validator = Object.assign({}, new ChaoValidator(options));
+    let _validator = new ChaoValidator(options);
 
     return _validator;
 };
