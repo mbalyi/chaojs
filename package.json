@@ -1,0 +1,19 @@
+{
+  "name": "chaojs",
+  "version": "0.5.2",
+  "description": "Chao.JS JavaScript Component Library",
+  "scripts": {
+    "test": "npm test --prefix ./tests/",
+    "minify": "npm run minify --prefix ./minifier/"
+  },
+  "author": "Mark Balyi",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/mbalyi/chaojs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mbalyi/chaojs/issues/"
+  },
+  "homepage": "https://github.com/mbalyi/chaojs/"
+}
