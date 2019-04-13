@@ -122,15 +122,15 @@ var ChaoInput = function(options = {}) {
             let _placeholder = this.getPlaceHolder();
             let _type = this.getType();
             let _input = `<input type="${_type}" 
-                                class="chao-input chao-${this._options.type} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" 
+                                class="chao-input chao-${this._options.type} ${this._options.customClass ? this._options.customClass : ''} ${this.getDisabled() ? 'chao-disabled' : ''}" 
                                 id="chao-${this.$target.attr('id')}" 
                                 ${_name ? `name="${_name}"` : ''}
                                 ${_placeholder ? `placeholder="${_placeholder}"` : ''}
                                 ${_title ? `title="${_title}"` : ''}
                                 ${_value ? `value="${_value}"` : ''}
                                 ${_name ? `name="${_name}"` : ''}
-                                ${this.getDisabled()}
-                                ${this.getRequired()}>`;
+                                ${this.getDisabled() ? 'disabled' : ''}
+                                ${this.getRequired() ? 'required' : ''}>`;
 
             this.$target.replaceWith($.parseHTML(_input));
             this.$element = $(`#chao-${this.$target.attr('id')}.chao-input`);
