@@ -1,5 +1,5 @@
 {
-  "name": "chao_tests",
+  "name": "chaojs_tests",
   "version": "1.0.0",
   "description": "Jasmine tests for Chao.JS JavaScript Component Library",
   "main": "index.js",
