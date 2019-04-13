@@ -9,8 +9,8 @@
   "author": "Mark Balyi",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/mbalyi/chaojs.git"
+    "type": "git",
+    "url": "https://github.com/mbalyi/chaojs.git"
   },
   "bugs": {
     "url": "https://github.com/mbalyi/chaojs/issues/"
