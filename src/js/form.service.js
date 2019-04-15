@@ -10,7 +10,7 @@
             try {
                 let $element = this.$element;
                 if (!this.$element.is('input') && $('input', this.$element).length > 0) {
-                    $('input', this.$element);
+                    $element = $('input', this.$element);
                 } 
 
                 if (_state === true) {

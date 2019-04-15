@@ -75,7 +75,7 @@ describe("InputComponent", function() {
       click: false,
       focus: false,
       blur: false
-    }
+    };
     let _data = $('#chaoInput1').chaoInput({
       callback: {
         onChange: function(res) {

@@ -8,10 +8,18 @@ var ChaoSwitch = function(options = {}) {
     this.$target = this._options.target;
     this.$element = null;
 
+    this.getChecked = function() {
+        return this._options.defaultChecked || this.$target.is(':checked');
+    }
+
+    this.getDisabled = function() {
+        return this._options.disabled || this.$target.is(':disabled');
+    }
+
     this.init = function() {
         let _switch = `
-            <label class="chao-switch ${this._options.customClass} ${this._options.disabled ? 'chao-disabled' : ''}" id="chao-${this.$target.attr('id')}">
-                <input type="checkbox" class="chao-checkbox" ${this._options.defaultChecked ? 'checked' : ''} ${this._options.disabled ? 'disabled' : ''}>
+            <label class="chao-switch ${this._options.customClass ? this._options.customClass : ''} ${this.getDisabled() ? 'chao-disabled' : ''}" id="chao-${this.$target.attr('id')}">
+                <input type="checkbox" class="chao-checkbox" ${this.getChecked() ? 'checked' : ''} ${this.getDisabled() ? 'disabled' : ''}>
                 <span class="chao-slider"></span>
             </label>
         `;

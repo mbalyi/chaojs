@@ -88,7 +88,7 @@ var setupHtmlContext = function() {
         click: false,
         mouseEnter: false,
         mouseDown: false
-      }
+      };
       let _data = $('#chaoBtn1').chaoButton({
         callback: {
           onClick: function(res) {
