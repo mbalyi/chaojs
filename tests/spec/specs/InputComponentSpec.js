@@ -1,6 +1,8 @@
 var setupHtmlContext = function() {
-  let _input = `<input type="text" id="chaoInput1" value="Default Text Field" title="First button">`;
-  $('body').empty().append($.parseHTML(_input));
+  let _input1 = `<input type="text" id="chaoInput1" value="Default Text Field" title="First button">`;
+  $('body').empty().append($.parseHTML(_input1));
+  let _input2 = `<input id="chaoInput2">`;
+  $('body').append($.parseHTML(_input2));
 }
 
 describe("InputComponent", function() {
@@ -10,6 +12,7 @@ describe("InputComponent", function() {
   });
 
   it("[Chao Input Component] field is rendered with jQuery and default configuration.", function() {
+    // console.log(`[Chao Input Component] field is rendered with jQuery and default configuration.`);
     expect($('#chaoInput1')).toExist();
     $('#chaoInput1').chaoInput();
     expect($('#chaoInput1')).not.toExist();
@@ -19,9 +22,29 @@ describe("InputComponent", function() {
     expect($('#chao-chaoInput1')).not.toHaveClass('chao-disabled');
     expect($('#chao-chaoInput1')).not.toHaveAttr('required');
     expect($('#chao-chaoInput1')).toHaveData('chaoInput');
+    expect($('#chao-chaoInput1')).toHaveAttr('title');
+    expect($('#chao-chaoInput1').attr('title')).toEqual('First button');
+    expect($('#chao-chaoInput1').val()).toEqual('Default Text Field');
+  });
+
+  it("[Chao Input Component] default renderer parameters.", function() {
+    // console.log(`[Chao Input Component] default renderer parameters.`);
+    expect($('#chaoInput2')).toExist();
+    $('#chaoInput2').chaoInput();
+    expect($('#chaoInput2')).not.toExist();
+    expect($('#chao-chaoInput2')).toExist();
+    expect($('#chao-chaoInput2')).not.toBeDisabled();
+    expect($('#chao-chaoInput2')).toHaveClass('chao-text');
+    expect($('#chao-chaoInput2')).not.toHaveClass('chao-disabled');
+    expect($('#chao-chaoInput2')).not.toHaveAttr('required');
+    expect($('#chao-chaoInput2')).toHaveData('chaoInput');
+    expect($('#chao-chaoInput2')).not.toHaveAttr('title');
+    expect($('#chao-chaoInput2')).not.toHaveAttr('placeholder');
+    expect($('#chao-chaoInput2').val()).toEqual('');
   });
 
   it("[Chao Input Component] field is rendered with configuration.", function() {
+    // console.log(`[Chao Input Component] field is rendered with configuration.`);
     expect($('#chaoInput1')).toExist();
     $('#chaoInput1').chaoInput({
       target: $('#chaoInput1'),
@@ -38,12 +61,14 @@ describe("InputComponent", function() {
   });
 
   it("[Chao Input Component] init result and data on DOM are same.", function() {
+    // console.log(`[Chao Input Component] init result and data on DOM are same.`);
     let _data = $('#chaoInput1').chaoInput();
     let _dataFromDOM = $('#chao-chaoInput1').data('chaoInput');
     expect(_data).toEqual(_dataFromDOM);
   });
 
   it("[Chao Input Component] supported events work.", function() {
+    // console.log(`[Chao Input Component] supported events work.`);
     let results = {
       change: false,
       keypress: false,
@@ -92,6 +117,7 @@ describe("InputComponent", function() {
   });
 
   it("[Chao Input Component] field can be enabled and disabled.", function() {
+    // console.log(`[Chao Input Component] field can be enabled and disabled.`);
     let _input = $('#chaoInput1').chaoInput();
     expect($('#chao-chaoInput1')).not.toBeDisabled();
     expect($('#chao-chaoInput1')).not.toHaveClass('chao-disabled');
