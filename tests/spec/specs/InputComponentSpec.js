@@ -18,8 +18,10 @@ describe("InputComponent", function() {
     expect($('#chaoInput1')).not.toExist();
     expect($('#chao-chaoInput1')).toExist();
     expect($('#chao-chaoInput1')).not.toBeDisabled();
+    expect($('#chao-chaoInput1')).not.toHaveAttr('readonly');
     expect($('#chao-chaoInput1')).toHaveClass('chao-text');
     expect($('#chao-chaoInput1')).not.toHaveClass('chao-disabled');
+    expect($('#chao-chaoInput1')).not.toHaveClass('chao-readonly');
     expect($('#chao-chaoInput1')).not.toHaveAttr('required');
     expect($('#chao-chaoInput1')).toHaveData('chaoInput');
     expect($('#chao-chaoInput1')).toHaveAttr('title');
@@ -50,12 +52,15 @@ describe("InputComponent", function() {
       target: $('#chaoInput1'),
       type: 'number',
       disabled: true,
-      required: true
+      required: true,
+      readonly: true
     });
     expect($('#chaoInput1')).not.toExist();
     expect($('#chao-chaoInput1')).toBeDisabled();
+    expect($('#chao-chaoInput1')).toHaveAttr('required');
     expect($('#chao-chaoInput1')).toHaveClass('chao-number');
     expect($('#chao-chaoInput1')).toHaveClass('chao-disabled');
+    expect($('#chao-chaoInput1')).toHaveClass('chao-readonly');
     expect($('#chao-chaoInput1')).toHaveAttr('required');
     expect($('#chao-chaoInput1')).toHaveData('chaoInput');
   });
@@ -129,5 +134,20 @@ describe("InputComponent", function() {
     _input.enable(true);
     expect($('#chao-chaoInput1')).not.toBeDisabled();
     expect($('#chao-chaoInput1')).not.toHaveClass('chao-disabled');
+  });
+
+  it("[Chao Input Component] field can be readonly.", function() {
+    // console.log(`[Chao Input Component] field can be readonly.`);
+    let _input = $('#chaoInput1').chaoInput();
+    expect($('#chao-chaoInput1')).not.toHaveAttr('readonly');
+    expect($('#chao-chaoInput1')).not.toHaveClass('chao-readonly');
+
+    _input.readonly(true);
+    expect($('#chao-chaoInput1')).toHaveAttr('readonly');
+    expect($('#chao-chaoInput1')).toHaveClass('chao-readonly');
+
+    _input.readonly(false);
+    expect($('#chao-chaoInput1')).not.toHaveAttr('readonly');
+    expect($('#chao-chaoInput1')).not.toHaveClass('chao-readonly');
   });
 });
