@@ -1,0 +1,20 @@
+{
+  "name": "chaojs_tests",
+  "version": "1.0.0",
+  "description": "Jasmine tests for Chao.JS JavaScript Component Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/jasmine/bin/jasmine.js"
+  },
+  "author": "Mark Balyi",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "3.4.0"
+  },
+  "devDependencies": {
+    "jasmine": "3.4.0",
+    "jasmine-jquery": "2.1.1",
+    "jasmine-spec-reporter": "4.2.1",
+    "jsdom": "14.0.0"
+  }
+}

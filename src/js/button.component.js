@@ -53,7 +53,7 @@ var ChaoButton = function(options = {}) {
         }
 
         let _btn = `
-            <button class="chao-btn chao-${this._options.type} ${this._options.customClass} ${this._options.disabled ? 'chao-disabled' : ''}" id="chao-${this.$target.attr('id')}" type="button" ${this._options.disabled ? 'disabled' : ''}>
+            <button class="chao-btn chao-${this._options.type} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" id="chao-${this.$target.attr('id')}" type="button" ${this._options.disabled ? 'disabled' : ''}>
                 ${_icon}
                 ${_title}
             </button>

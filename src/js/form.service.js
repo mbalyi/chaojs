@@ -8,14 +8,17 @@
     let createInstance = function() {
         let _enableElement = function(_state = true) {
             try {
-                let $input = this.$element.is('input') ? this.$element : $('input', this.$element);
+                let $element = this.$element;
+                if (!this.$element.is('input') && $('input', this.$element).length > 0) {
+                    $element = $('input', this.$element);
+                } 
 
                 if (_state === true) {
                     this.$element.removeClass('chao-disabled');
-                    $input.removeAttr('disabled');
+                    $element.removeAttr('disabled');
                 } else if (_state === false) {
                     this.$element.addClass('chao-disabled');
-                    $input.attr('disabled', 'disabled');
+                    $element.attr('disabled', 'disabled');
                 }
                 this._options.disabled = _state;
                 return this._options.disabled;
