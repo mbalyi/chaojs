@@ -36,7 +36,7 @@ var ChaoFormService = (function() {
 
         let _readonlyElement = function(_state = true) {
             let self = this;
-            return ChaoFormService.getInstance().setAvailable(self, _state, ChaoDOMAvailability.readonly);
+            return ChaoFormService.getInstance().setAvailable(self, !_state, ChaoDOMAvailability.readonly);
         }
 
         return {
