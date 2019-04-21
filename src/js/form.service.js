@@ -2,33 +2,47 @@
  * Chao.JS Form Service
  */
 
- var ChaoFormService = (function() {
+var ChaoDOMAvailability = Object.freeze({ disabled: 'disabled', readonly: 'readonly' });
+
+var ChaoFormService = (function() {
     let _instance = null;
 
     let createInstance = function() {
-        let _enableElement = function(_state = true) {
+        let _setAvaialbility = function(self = {}, _state = true, _availability = ChaoDOMAvailability.disabled) {
             try {
-                let $element = this.$element;
-                if (!this.$element.is('input') && $('input', this.$element).length > 0) {
-                    $element = $('input', this.$element);
+                let $element = self.$element;
+                if (!self.$element.is('input') && $('input', self.$element).length > 0) {
+                    $element = $('input', self.$element);
                 } 
 
                 if (_state === true) {
-                    this.$element.removeClass('chao-disabled');
-                    $element.removeAttr('disabled');
+                    self.$element.removeClass(`chao-${_availability}`);
+                    $element.removeAttr(_availability);
                 } else if (_state === false) {
-                    this.$element.addClass('chao-disabled');
-                    $element.attr('disabled', 'disabled');
+                    self.$element.addClass(`chao-${_availability}`);
+                    $element.attr(_availability, _availability);
                 }
-                this._options.disabled = _state;
-                return this._options.disabled;
+                self._options.disabled = _state;
+                return self._options.disabled;
             } catch(e) {
-                console.error(`Chao Form service couldn't disable component. \n`, e);
+                console.error(`Chao Form service couldn't ${_availability === ChaoDOMAvailability.disabled ? 'disable' : 'readonly'} component. \n`, e);
             }
         }
 
+        let _enableElement = function(_state = true) {
+            let self = this;
+            return ChaoFormService.getInstance().setAvailable(self, _state, ChaoDOMAvailability.disabled);
+        }
+
+        let _readonlyElement = function(_state = true) {
+            let self = this;
+            return ChaoFormService.getInstance().setAvailable(self, !_state, ChaoDOMAvailability.readonly);
+        }
+
         return {
-            enable: _enableElement
+            enable: _enableElement,
+            readonly: _readonlyElement,
+            setAvailable: _setAvaialbility
         }
     }
 

@@ -6,8 +6,9 @@
     padding: 0.5em;
 }
 
-/** Disabled design */
-.chao-input.chao-disabled {
+/** Disabled, Readonly design */
+.chao-input.chao-disabled,
+.chao-input.chao-readonly {
     border-color: #555;
     background-color: #EEE;
 }
