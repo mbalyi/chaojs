@@ -76,5 +76,21 @@ var setupHtmlContext = function() {
       expect($('input', $switch)).toBeDisabled();
       expect($switch).toHaveClass('chao-disabled');
     });
+
+    it("[Chao Switch Component] value can be reset.", function() {
+      // console.log(`[Chao Switch Component] value can be reset.`);
+      let _switch = $('#chaoSwitch2').chaoSwitch();
+      let $input = $('#chao-chaoSwitch2 input');
+      expect(_switch.value()).not.toBeTruthy();
+      expect($input.is(':checked')).not.toBeTruthy();
+      
+      _switch.value(true);
+      expect(_switch.value()).toBeTruthy();
+      expect($input.is(':checked')).toBeTruthy();
+
+      _switch.value(false);
+      expect(_switch.value()).not.toBeTruthy();
+      expect($input.is(':checked')).not.toBeTruthy();
+    });
   });
   

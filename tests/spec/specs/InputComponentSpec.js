@@ -150,4 +150,24 @@ describe("InputComponent", function() {
     expect($('#chao-chaoInput1')).not.toHaveAttr('readonly');
     expect($('#chao-chaoInput1')).not.toHaveClass('chao-readonly');
   });
+
+  it("[Chao Input Component] value can be reset.", function() {
+    // console.log(`[Chao Input Component] value can be reset.`);
+    let _input = $('#chaoInput1').chaoInput({ 
+      value: 13,
+      type: 'number'
+    });
+    let $input = $('#chao-chaoInput1');
+
+    expect($input).toHaveClass('chao-number');
+    expect($input.attr('type')).toEqual('number');
+
+
+    expect($input.val()).toEqual('13');
+    expect(_input.value()).toEqual(13);
+
+    _input.value(23);
+    expect($input.val()).toEqual('23');
+    expect(_input.value()).toEqual(23);
+  });
 });
