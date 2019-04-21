@@ -55,7 +55,7 @@ var ChaoCheckboxGroup = function(options = {}) {
 
     this.handleChecked = function(self, element) {
         let value = null;
-        if ($(`#chao-${element.key}`, self.$element).attr('checked') === 'checked') {
+        if ($(`#chao-${element.key}`, self.$element).is(':checked')) {
             $(`.chao-${element.key}`, self.$element).removeClass('chao-checkbox-active');
             $(`#chao-${element.key}`, self.$element).removeAttr('checked');
             value = false;
@@ -65,6 +65,15 @@ var ChaoCheckboxGroup = function(options = {}) {
             value = true;
         }
         return value;
+    }
+    
+    this.handleCheck = function(element, _value) {
+        if (!_value) {
+            $(`.chao-${element.key}`, this.$element).removeClass('chao-checkbox-active');
+        } else {
+            $(`.chao-${element.key}`, this.$element).addClass('chao-checkbox-active');
+        }
+        $(`#chao-${element.key}`, this.$element).prop('checked', _value);
     }
 
     this.secureState = function() {
@@ -111,7 +120,7 @@ var ChaoCheckboxGroup = function(options = {}) {
     this.value = function(_value, _key = undefined) {
         if (_key === undefined) {
             for (let _element of this._data) {
-                this.value(_value, _element);
+                this.value(_value, _element.key);
             }
 
             return this._data.map(element => {
@@ -121,13 +130,20 @@ var ChaoCheckboxGroup = function(options = {}) {
                 };
             });
         } else {
+            let _data = this._data.find(data => {if (data.key === _key) {return data;}});
             if (_value !== undefined) {
-                let _data = this._data.find(data => {if (data.key === _key) {return data;}});
+                this.handleCheck(_data, _value);
                 _data.value = _value;
-                $(`.chao-checkbox-btn.chao-${_data.key}`, this.$element).prop('checked', _value);
             }
 
-            return _data.value;
+            let _val = undefined;
+            if (_data !== undefined && _data.value === undefined) {
+                _data.value = false;
+            }
+            if (_data !== undefined) {
+                _val = _data.value;
+            }
+            return _val;
         }
     }
 
