@@ -58,6 +58,15 @@ var ChaoSwitch = function(options = {}) {
 
     this.enable = ChaoFormService.getInstance().enable;
 
+    this.value = function(_value) {
+        if (_value !== undefined) {
+            $('input.chao-checkbox', this.$element).prop('checked', _value);
+            this._options.defaultChecked = _value === true ? true : false;
+        }
+
+        return this._options.defaultChecked;
+    }
+
     this.init();
 
     return this;

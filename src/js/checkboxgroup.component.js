@@ -108,6 +108,29 @@ var ChaoCheckboxGroup = function(options = {}) {
         }
     }
 
+    this.value = function(_value, _key = undefined) {
+        if (_key === undefined) {
+            for (let _element of this._data) {
+                this.value(_value, _element);
+            }
+
+            return this._data.map(element => {
+                return {
+                    key: element.key,
+                    value: element.value
+                };
+            });
+        } else {
+            if (_value !== undefined) {
+                let _data = this._data.find(data => {if (data.key === _key) {return data;}});
+                _data.value = _value;
+                $(`.chao-checkbox-btn.chao-${_data.key}`, this.$element).prop('checked', _value);
+            }
+
+            return _data.value;
+        }
+    }
+
     this.init = function() {
         this.render();
         this.handleBindings();

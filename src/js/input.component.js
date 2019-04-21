@@ -196,6 +196,15 @@ var ChaoInput = function(options = {}) {
 
     this.readonly = ChaoFormService.getInstance().readonly;
 
+    this.value = function(_value) {
+        if (_value !== undefined) {
+            this.$element.val(_value);
+            this._options.value = _value;
+        }
+
+        return this._options.value;
+    }
+
     this.init(this._options);
 
     return this;
