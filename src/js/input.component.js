@@ -101,6 +101,19 @@ var ChaoInput = function(options = {}) {
         return _disabled;
     }
 
+    this.getReadonly = function() {
+        let _readonly = ``;
+
+        if (this._options.disabled) {
+            _readonly = this._options.readonly;
+        } else if (this.$target.attr('readonly')) {
+            _readonly = this.$target.attr('readonly');
+            this._options.type = _readonly;
+        }
+
+        return _readonly;
+    }
+
     this.getRequired = function() {
         let _required = ``;
 
@@ -121,15 +134,18 @@ var ChaoInput = function(options = {}) {
             let _title = this.getTitle();
             let _placeholder = this.getPlaceHolder();
             let _type = this.getType();
+            let _disabled = this.getDisabled();
+            let _readonly = this.getReadonly();
             let _input = `<input type="${_type}" 
-                                class="chao-input chao-${_type} ${this._options.customClass ? this._options.customClass : ''} ${this.getDisabled() ? 'chao-disabled' : ''}" 
+                                class="chao-input chao-${_type} ${this._options.customClass ? this._options.customClass : ''} ${_disabled ? 'chao-disabled' : ''} ${_readonly ? 'chao-readonly' : ''}" 
                                 id="chao-${this.$target.attr('id')}" 
                                 ${_name ? `name="${_name}"` : ''}
                                 ${_placeholder ? `placeholder="${_placeholder}"` : ''}
                                 ${_title ? `title="${_title}"` : ''}
                                 ${_value ? `value="${_value}"` : ''}
                                 ${_name ? `name="${_name}"` : ''}
-                                ${this.getDisabled() ? 'disabled' : ''}
+                                ${_disabled ? 'disabled' : ''}
+                                ${_readonly ? 'readonly' : ''}
                                 ${this.getRequired() ? 'required' : ''}>`;
 
             this.$target.replaceWith($.parseHTML(_input));
@@ -177,6 +193,8 @@ var ChaoInput = function(options = {}) {
     }
 
     this.enable = ChaoFormService.getInstance().enable;
+
+    this.readonly = ChaoFormService.getInstance().readonly;
 
     this.init(this._options);
 
