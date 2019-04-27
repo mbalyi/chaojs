@@ -96,6 +96,7 @@ var ChaoCheckboxProgressBar = function(options = {}) {
             }
         } catch (e) {
             console.error(`Error happened during the Chao.JS checkbox progress bar component initialization. \n`, e);
+            throw e;
         }
     }
 
