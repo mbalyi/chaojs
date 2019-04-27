@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JS Checkpoint Progress Bar component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JS Checkpoint Progress Bar component.">
+        <meta name="keywords" content="Chao,Checkpoint,Progress,Bar,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../chao.min.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../chao.min.js"></script>
+    </head>
+    <body>
+        <div id="chaoProgress"></div>
+        
+        <script>
+            var progress = $('#chaoProgress').chaoCheckpointProgressBar({
+                data: [
+                    { title: 'Pre-process', key: 'pre' },
+                    { title: 'Action', key: 'act' },
+                    { title: 'Completed', key: 'comp' },
+                    { title: 'Post-process', key: 'post' }
+                ]
+            });
+        </script>
+
+    </body>
+</html>
