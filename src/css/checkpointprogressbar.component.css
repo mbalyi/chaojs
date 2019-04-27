@@ -45,7 +45,7 @@ ul.chao-progress-bar li:before {
     text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
     top: 4px;
     width: 35px;
-    z-index: 999;
+    z-index: 2;
 }
 
 ul.chao-progress-bar li.inprogress {
@@ -55,18 +55,18 @@ ul.chao-progress-bar li.inprogress {
 
 ul.chao-progress-bar li.inprogress:before {
     background: #8bc53f;
-    z-index: 99999;
+    z-index: 2;
 }
 
 ul.chao-progress-bar li.completed {
     background: #ececec;
     color: #57aed1;
-    z-index: 99999;
+    z-index: 1;
 }
 
 ul.chao-progress-bar li.completed:before {
     background: #57aed1;
-    z-index: 99999;
+    z-index: 2;
 }
 
 ul.chao-progress-bar li:nth-child(1):before {
@@ -184,7 +184,7 @@ ul.chao-progress-bar {
         position: absolute;
         top: -65px;
         width: 45px;
-        z-index: 99;
+        z-index: 1;
     }
     ul.chao-progress-bar li.completed {
         background: none;
@@ -202,7 +202,7 @@ ul.chao-progress-bar {
         position: absolute;
         top: -50px;
         width: 100%;
-        z-index: 99;
+        z-index: 1;
     }
 
     .chao-progress-bar li:last-child.completed:after {
