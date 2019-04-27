@@ -30,6 +30,7 @@ var ChaoCheckboxGroup = function(options = {}) {
         let self = this;
         this._data.forEach(element => {
             let _element = element;
+            $(`.chao-checkbox-btn.chao-${_element.key}`, self.$element).unbind('click');
             $(`.chao-checkbox-btn.chao-${_element.key}`, self.$element).on('click', e => {
                 if (!$(e.currentTarget).hasClass('chao-disabled')) {
                     _element.value = self.handleChecked(self, _element);
