@@ -6,6 +6,7 @@
 var ChaoButtonType = Object.freeze({
     btn: 'button',
     iconBtn: 'iconButton',
+    iconWithoutBorderBtn: 'iconWithoutBorderButton',
     wIconBtn: 'buttonWithIcon'
 });
 
@@ -40,6 +41,7 @@ var ChaoButton = function(options = {}) {
 
         switch(this._options.type) {
             case ChaoButtonType.iconBtn:
+            case ChaoButtonType.iconWithoutBorderBtn:
                 _icon = this.renderIcon();
                 break;
             case ChaoButtonType.wIconBtn:
@@ -52,15 +54,16 @@ var ChaoButton = function(options = {}) {
                 break;
         }
 
+        let _id = this._options.customId !== undefined && this._options.customId !== null ? this._options.customId : this.$target.attr('id');
         let _btn = `
-            <button class="chao-btn chao-${this._options.type} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" id="chao-${this.$target.attr('id')}" type="button" ${this._options.disabled ? 'disabled' : ''}>
+            <button class="chao-btn chao-${this._options.type}${this._options.type === ChaoButtonType.iconWithoutBorderBtn ? ' chao-btn-icon-without-border' : ''} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" ${_id !== undefined && _id !== null ? `id="chao-${_id}"` : ''} type="button" ${this._options.disabled ? 'disabled' : ''}>
                 ${_icon}
                 ${_title}
             </button>
         `;
-
-        this.$target.replaceWith($.parseHTML(_btn));
-        this.$element = $(`#chao-${this.$target.attr('id')}.chao-btn`);
+        
+        this.$element = $(_btn);
+        this.$target.replaceWith(this.$element);
         this.handleBindings();
         this.$element.data('chaoButton', this);
     }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JS Dialog component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JS Dialog component.">
+        <meta name="keywords" content="Chao,Dialog,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../chao.min.css">
+        <link rel="stylesheet" type="text/css" href="./../src/css/dialog.component.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../chao.min.js"></script>
+        <script type="application/javascript" src="./../src/js/dialog.component.js"></script>
+    </head>
+    <body style="width: 100%; height: 100%; margin: 0;">
+
+        <h1>Chao Dialog Example</h1>
+        <button type="button" id="open">Open Dialog</button>
+        <button type="button" id="destroy">Destroy Dialog</button>
+
+        <script>
+            var dialog = $('body').chaoDialog({
+                title: 'Chao Dialog',
+                content: `
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis imperdiet tortor in pulvinar. Fusce sodales ex nec ex finibus, in pellentesque elit finibus. Morbi porttitor ornare eros vel lacinia. In magna est, laoreet faucibus placerat ac, sagittis a purus. In ultrices volutpat porta. Sed a condimentum massa, sed feugiat lectus. Vestibulum consequat lorem non quam porta, eget feugiat nibh tincidunt. Mauris sodales felis eu orci convallis consequat. Sed eu elit fringilla, tincidunt dui eget, finibus libero. Integer eleifend sollicitudin magna et tempus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque rutrum quis felis eget aliquam. Praesent ligula quam, mattis vitae tempus et, posuere vel nulla. Nulla ultrices maximus sagittis.
+                `,
+                isModal: true
+            });
+
+            var openBtn = $('#open').chaoButton({
+                callback: {
+                    onClick: function() {
+                        dialog.open();
+                    }
+                }
+            });
+
+            var openBtn = $('#destroy').chaoButton({
+                callback: {
+                    onClick: function() {
+                        dialog.destroy();
+                    }
+                }
+            });
+        </script>
+
+    </body>
+</html>

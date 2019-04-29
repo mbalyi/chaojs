@@ -67,6 +67,6 @@ var setupHtmlContext = function() {
       expect(_result).toBeTruthy();
     });
   
-    /** Need more tests for code and function coverage!!! */
+    /** TODO: Need more tests for code and function coverage!!! */
   });
   
