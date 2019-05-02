@@ -11,6 +11,7 @@ describe("NotificationComponent", function() {
 
   it("[Chao Notification Service/Component] field is rendered with jQuery and default configuration.", function() {
     // console.log(`[Chao Notification Service/Component] field is rendered with jQuery and default configuration.`);
+    expect(ChaoNotificationService).toBeDefined()
     let _svc = ChaoNotificationService.getInstance();
     expect($('body .chao-notification-container')).toExist();
     expect($('body .chao-notification-container')).toBeEmpty();
