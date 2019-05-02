@@ -3,7 +3,7 @@
  */
 "use strict";
 
-var ChaoNotificationType = Object.freeze({
+var ChaoNotificationSeverity = Object.freeze({
     INFO: 'chao-info-notification',
     SUCCESS: 'chao-success-notification',
     WARNING: 'chao-warning-notification',
@@ -15,13 +15,20 @@ var ChaoNotification = function(options = {}) {
     this.$target = this._options.target;
     this.$element = null;
 
-    this._validateType = function() {
-        let _type = ChaoNotificationType.INFO;
-        return _type;
+    this._validateSeverity = function() {
+        let _severity = ChaoNotificationSeverity.INFO;
+        return _severity;
     }
 
     this.init = function() {
-        let _notification = `<div class="chao-notification ${this._validateType()}"></div>`;
+        let _severity = this._validateSeverity();
+        let _notification = `<div class="chao-notification ${_severity.class}">
+            <div class="chao-notifcation-icon"><span class="${_severity.icon}"></span></div>
+            <div class="chao-notification-content">
+                <div class="chao-notification-title">${this._options.summary}</div>
+                <div class="chao-notification-description">${this._options.detail}</div>
+            </div>
+        </div>`;
         this.$element = $(_notification);
         this.$target.append(this.$element);
         this.handleLifeCycle();
@@ -29,12 +36,18 @@ var ChaoNotification = function(options = {}) {
     }
 
     this.handleLifeCycle = function() {
-        if (this._options.timeOut) {
-            let self = this;
-            setTimeout(function() {
-                self.$element.remove();
-            }, this._options.timeOut);
+        let self = this;
+        setTimeout(function() {
+            self.destroy();
+        }, this._options.timeOut && $.isNumeric(this._options.timeOut) ? this._options.timeOut : 3000);
+    }
+
+    this.destroy = function() {
+        this.$element.remove();
+        if (this._options.callback && $.isFunction(this._options.callback.onDestroy)) {
+            this._options.callback.onDestroy();
         }
+        delete this;
     }
 
     this.init();
