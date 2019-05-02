@@ -93,3 +93,7 @@ var ChaoNotificationService = (function() {
         }
     }
 })();
+
+$.fn.chaoNotificationService = function() {
+    return ChaoNotificationService.getInstance();
+}
