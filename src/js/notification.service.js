@@ -11,13 +11,14 @@ var ChaoNotificationService = (function() {
         var $target = configuration.$target ? configuration.$target : null;
         var $element = null;
 
-        var publish = function(options = { severity: null, summary: null, detail: null, timeOut: null, callback: null }) {
+        var publish = function(options = { severity: null, summary: null, detail: null, timeOut: null, close: false, callback: null }) {
             let _notification = new ChaoNotification({
                 target: $element,
                 severity: options.severity ? options.severity : ChaoNotificationSeverity.INFO,
                 summary: options.summary,
                 detail: options.detail,
                 timeOut: options.life,
+                close: $.type(configuration.close) === 'boolean' ? configuration.close : options.close,
                 callback: function() {
                     pop();
                     if (options.callback && $.isFunction(options.callback.onDestroy)) {
@@ -42,22 +43,22 @@ var ChaoNotificationService = (function() {
             });
         }
 
-        var info = function(options = { summary: null, detail: null, timeOut: null, callback: null }) {
+        var info = function(options = { summary: null, detail: null, timeOut: null, close: false, callback: null }) {
             options.severity = ChaoNotificationSeverity.INFO;
             publish(options);
         }
 
-        var success = function(options = { summary: null, detail: null, timeOut: null, callback: null }) {
+        var success = function(options = { summary: null, detail: null, timeOut: null, close: false, callback: null }) {
             options.severity = ChaoNotificationSeverity.SUCCESS;
             publish(options);
         }
 
-        var warning = function(options = { summary: null, detail: null, timeOut: null, callback: null }) {
+        var warning = function(options = { summary: null, detail: null, timeOut: null, close: false, callback: null }) {
             options.severity = ChaoNotificationSeverity.WARNING;
             publish(options);
         }
 
-        var error = function(options = { summary: null, detail: null, timeOut: null, callback: null }) {
+        var error = function(options = { summary: null, detail: null, timeOut: null, close: false, callback: null }) {
             options.severity = ChaoNotificationSeverity.ERROR;
             publish(options);
         }

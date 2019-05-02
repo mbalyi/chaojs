@@ -30,7 +30,7 @@
             var infoBtn = $('#info').chaoButton({
                 callback: {
                     onClick: function() {
-                        _notificationService.info({ summary: 'Info Notification', detail: 'Everything is right!' });
+                        _notificationService.info({ summary: 'Info Notification', detail: `I'll live forever!`, life: null });
                     }
                 }
             });
@@ -46,7 +46,7 @@
             var warnBtn = $('#warn').chaoButton({
                 callback: {
                     onClick: function() {
-                        _notificationService.warning({ summary: 'Warning Notification', detail: 'Something is strange, but dont care!' });
+                        _notificationService.warning({ summary: 'Warning Notification', detail: `Something is strange, but don't care!` });
                     }
                 }
             });

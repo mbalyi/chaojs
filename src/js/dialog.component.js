@@ -41,7 +41,7 @@ var ChaoDialog = function(options = {}) {
                     self.close.apply(self);
                 }
             }
-        })
+        });
     }
 
     this.renderContent = function() {
