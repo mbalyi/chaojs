@@ -10,6 +10,7 @@ var ChaoNotificationSeverity = Object.freeze({
     ERROR: 'chao-error-notification'
 });
 
+/** Notification component */
 var ChaoNotification = function(options = {}) {
     this._options = options;
     this.$target = this._options.target;
@@ -109,3 +110,8 @@ jQuery.fn.chaoNotification = function(options = {}) {
 
     return _notification;
 };
+
+
+// /** For unit testing */
+// module.exports.ChaoNotificationSeverity = ChaoNotificationSeverity;
+// module.exports.ChaoNotification = ChaoNotification;

@@ -11,7 +11,7 @@ var ChaoNotificationService = (function() {
         var $target = configuration.$target ? configuration.$target : null;
         var $element = null;
 
-        var publish = function(options = { severity: null, summary: null, detail: null, timeOut: null, close: false, callback: null }) {
+        var publish = function(options = { severity: null, summary: null, detail: null, life: null, close: false, callback: null }) {
             let _notification = new ChaoNotification({
                 target: $element,
                 severity: options.severity ? options.severity : ChaoNotificationSeverity.INFO,
@@ -43,22 +43,26 @@ var ChaoNotificationService = (function() {
             });
         }
 
-        var info = function(options = { summary: null, detail: null, timeOut: null, close: false, callback: null }) {
+        var list = function() {
+            return notifications;
+        }
+
+        var info = function(options = { summary: null, detail: null, life: null, close: false, callback: null }) {
             options.severity = ChaoNotificationSeverity.INFO;
             publish(options);
         }
 
-        var success = function(options = { summary: null, detail: null, timeOut: null, close: false, callback: null }) {
+        var success = function(options = { summary: null, detail: null, life: null, close: false, callback: null }) {
             options.severity = ChaoNotificationSeverity.SUCCESS;
             publish(options);
         }
 
-        var warning = function(options = { summary: null, detail: null, timeOut: null, close: false, callback: null }) {
+        var warning = function(options = { summary: null, detail: null, life: null, close: false, callback: null }) {
             options.severity = ChaoNotificationSeverity.WARNING;
             publish(options);
         }
 
-        var error = function(options = { summary: null, detail: null, timeOut: null, close: false, callback: null }) {
+        var error = function(options = { summary: null, detail: null, life: null, close: false, callback: null }) {
             options.severity = ChaoNotificationSeverity.ERROR;
             publish(options);
         }
@@ -77,6 +81,7 @@ var ChaoNotificationService = (function() {
             publish:    publish,
             pop:        pop,
             destroy:    destroy,
+            list:       list,
             info:       info,
             success:    success,
             warning:    warning,
@@ -97,3 +102,6 @@ var ChaoNotificationService = (function() {
 $.fn.chaoNotificationService = function() {
     return ChaoNotificationService.getInstance();
 }
+
+/** For unit testing */
+// module.exports.ChaoNotificationService = ChaoNotificationService;
