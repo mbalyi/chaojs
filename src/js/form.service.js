@@ -54,4 +54,4 @@ var ChaoFormService = (function() {
             return _instance;
         }
     }
- })()
+ })();

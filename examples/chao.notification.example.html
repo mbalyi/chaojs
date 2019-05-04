@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JS Notification component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JS Notification component.">
+        <meta name="keywords" content="Chao,Notification,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../chao.min.css">
+        <link rel="stylesheet" type="text/css" href="./../src/css/notification.component.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../chao.min.js"></script>
+        <!-- <script type="application/javascript" src="./../src/js/notification.component.js"></script>
+        <script type="application/javascript" src="./../src/js/notification.service.js"></script> -->
+    </head>
+    <body style="width: 100%; height: 100%; margin: 0;">
+
+        <h1>Chao Notification Example</h1>
+        <button type="button" id="info">Info</button>
+        <button type="button" id="succ">Success</button>
+        <button type="button" id="warn">Warning</button>
+        <button type="button" id="err">Error</button>
+
+        <script>
+            var _notificationService = ChaoNotificationService.getInstance();
+            
+            var infoBtn = $('#info').chaoButton({
+                callback: {
+                    onClick: function() {
+                        _notificationService.info({ summary: 'Info Notification', detail: `I'll live forever!`, life: null });
+                    }
+                }
+            });
+
+            var succBtn = $('#succ').chaoButton({
+                callback: {
+                    onClick: function() {
+                        _notificationService.success({ summary: 'Success Notification', detail: 'Everything goes well!' });
+                    }
+                }
+            });
+
+            var warnBtn = $('#warn').chaoButton({
+                callback: {
+                    onClick: function() {
+                        _notificationService.warning({ summary: 'Warning Notification', detail: `Something is strange, but don't care!` });
+                    }
+                }
+            });
+
+            var errBtn = $('#err').chaoButton({
+                callback: {
+                    onClick: function() {
+                        _notificationService.error({ summary: 'Error Notification', detail: 'Exception! 404!' });
+                    }
+                }
+            });
+        </script>
+
+    </body>
+</html>

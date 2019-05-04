@@ -1,0 +1,68 @@
+/** Notification Container */
+.chao-notification-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+}
+
+/** Notification */
+.chao-notification {
+    display: flex;
+    width: 200px;
+    margin-bottom: 2px;
+    padding: 5px;
+    box-shadow: 4px 3px 2px 2px #ccc;
+    color: #fff;
+}
+
+.chao-notification .chao-notifcation-icon {
+    font-size: 20px;
+    margin: 0 5px;
+}
+
+.chao-notification .chao-notification-content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    margin: 0 5px;
+}
+
+.chao-notification .chao-notification-content .chao-notification-title {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.chao-notification .chao-notification-content .chao-notification-description {
+    font-size: 0.8em;
+}
+
+.chao-notification .chao-notification-close,
+.chao-notification .chao-notification-close .chao-btn-icon {
+    color: #fff;
+}
+
+.chao-notification .chao-notification-close .chao-btn {
+    padding: 0;
+}
+
+/** Notification Styles */
+.chao-notification.chao-info-notification {
+    border: 1px solid #2196F3;
+    background-color: #2196F3;
+}
+
+.chao-notification.chao-success-notification {
+    border: 1px solid #4bae4f;
+    background-color: #4bae4f;
+}
+
+.chao-notification.chao-warning-notification {
+    border: 1px solid #fe5621;
+    background-color: #fe5621;
+}
+
+.chao-notification.chao-error-notification {
+    border: 1px solid #f3422b;
+    background-color: #f3422b;
+}
