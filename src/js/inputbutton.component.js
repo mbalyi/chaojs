@@ -31,7 +31,15 @@ var ChaoInputButton = function(options = {}) {
         this.$element.data('chaoInputButton', this);
     }
 
-    this.enable = ChaoFormService.getInstance().enable;
+    this.enable = function(state = true) {
+        this._input.enable(state);
+        this._btn.enable(state);
+    }
+
+    this.readonly = function(state = true) {
+        this._input.readonly(state);
+        this._btn.enable(!state);
+    }
 
     this.init();
 
