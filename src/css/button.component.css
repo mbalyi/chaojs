@@ -49,8 +49,6 @@
 
 /** Disabled design */
 .chao-btn.chao-disabled {
-    /* border-color: #555;
-    background-color: #EEE; */
     opacity: 0.65;
 }
 
@@ -72,7 +70,6 @@
 
 .chao-btn.chao-disabled .chao-btn-title,
 .chao-btn.chao-disabled .chao-btn-icon {
-    /* color: #555; */
     color: #fff;
 }
 
