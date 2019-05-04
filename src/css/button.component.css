@@ -1,7 +1,7 @@
 /** Default design */
 .chao-btn {
     border: 1px solid #2196F3;
-    border-radius: 0.5em;
+    border-radius: 0.25em;
     background-color: transparent;
     padding: 0.5em;
 }
@@ -22,6 +22,7 @@
 /** Hover design */
 .chao-btn:hover:not(.chao-disabled):not(.chao-btn-icon-without-border) {
     background-color: #2196F3;
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
 }
 
 
@@ -34,13 +35,74 @@
     color: #000;
 }
 
+.chao-btn.chao-btn-success:hover:not(.chao-disabled):not(.chao-btn-icon-without-border) {
+    background-color: #4bae4f;
+}
+
+.chao-btn.chao-btn-warning:hover:not(.chao-disabled):not(.chao-btn-icon-without-border) {
+    background-color: #fe5621;
+}
+
+.chao-btn.chao-btn-error:hover:not(.chao-disabled):not(.chao-btn-icon-without-border) {
+    background-color: #f3422b;
+}
+
 /** Disabled design */
 .chao-btn.chao-disabled {
-    border-color: #555;
-    background-color: #EEE;
+    opacity: 0.65;
+}
+
+.chao-btn.chao-disabled.chao-btn-info {
+    background-color: #2196F3;
+}
+
+.chao-btn.chao-disabled.chao-btn-success {
+    background-color: #4bae4f;
+}
+
+.chao-btn.chao-disabled.chao-btn-warning {
+    background-color: #fe5621;
+}
+
+.chao-btn.chao-disabled.chao-btn-error {
+    background-color: #f3422b;
 }
 
 .chao-btn.chao-disabled .chao-btn-title,
 .chao-btn.chao-disabled .chao-btn-icon {
-    color: #555;
+    color: #fff;
+}
+
+
+/** Severity styles */
+.chao-btn:not(.chao-disabled).chao-btn-info {
+    border-color: #2196F3;
+    color: #2196F3;
+}
+
+.chao-btn.chao-btn-success {
+    border-color: #4bae4f;
+}
+
+.chao-btn.chao-btn-success:not(.chao-disabled):not(:hover) .chao-btn-title,
+.chao-btn.chao-btn-success:not(.chao-disabled):not(:hover) .chao-btn-icon {
+    color: #4bae4f;
+}
+
+.chao-btn.chao-btn-warning {
+    border-color: #fe5621;
+}
+
+.chao-btn.chao-btn-warning:not(.chao-disabled):not(:hover) .chao-btn-title,
+.chao-btn.chao-btn-warning:not(.chao-disabled):not(:hover) .chao-btn-icon {
+    color: #fe5621;
+}
+
+.chao-btn.chao-btn-error {
+    border-color: #f3422b;
+}
+
+.chao-btn.chao-btn-error:not(.chao-disabled):not(:hover) .chao-btn-title,
+.chao-btn.chao-btn-error:not(.chao-disabled):not(:hover) .chao-btn-icon {
+    color: #f3422b;
 }

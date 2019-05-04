@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JS InputButton component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JS InputButton component.">
+        <meta name="keywords" content="Chao,InputButton,Input,Button,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../chao.min.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../chao.min.js"></script>
+        <script type="application/javascript" src="./../src/js/inputbutton.component.js"></script>
+        <script type="application/javascript" src="./../src/js/form.service.js"></script>
+
+        <style>
+            body {
+                margin: 10% 30%;
+            }
+
+            body > div {
+                margin-bottom: 1%;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="input-button" id="chao"></div>
+        <div class="success-button" name="Success name!"></div>
+        <div class="error-button" title="Error title!"></div>
+        <div class="disabled-button" placeholder="Warning placeholder"></div>
+        <div class="readonly-button"></div>
+        <script>
+            $('.input-button').chaoInputButton({
+                customClass: 'chao-design',
+                disabled: false,
+                buttonType: ChaoButtonType.btn,
+                inputType: 'number',
+                buttonTitle: 'Submit',
+                callback: {
+                    onClick: function(res) {
+                        console.log('Btn click 1: ', res);
+                    },
+                    onMouseEnter: function(res) {
+                        console.log('Btn hover 1: ', res);
+                    }
+                }
+            });
+
+            $('.success-button').chaoInputButton({
+                disabled: false,
+                buttonType: ChaoButtonType.wIconBtn,
+                buttonTitle: 'Send',
+                icon: 'fa fa-check',
+                severity: ChaoButtonSeverity.SUCCESS
+            });
+
+            $('.error-button').chaoInputButton({
+                disabled: false,
+                buttonType: ChaoButtonType.iconBtn,
+                icon: 'fa fa-exclamation-circle',
+                severity: ChaoButtonSeverity.ERROR
+            });
+
+            $('.disabled-button').chaoInputButton({
+                disabled: true,
+                buttonType: ChaoButtonType.btn,
+                severity: ChaoButtonSeverity.WARNING,
+                buttonTitle: 'Alert'
+            });
+
+            $('.readonly-button').chaoInputButton({
+                readonly: true,
+                buttonType: ChaoButtonType.btn,
+                severity: ChaoButtonSeverity.SUCCESS,
+                value: 'Message was sent to client!',
+                buttonTitle: 'Send'
+            });
+        </script>
+
+    </body>
+</html>

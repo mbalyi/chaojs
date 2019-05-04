@@ -10,10 +10,19 @@ var ChaoButtonType = Object.freeze({
     wIconBtn: 'buttonWithIcon'
 });
 
+var ChaoButtonSeverity = Object.freeze({
+    INFO: 'info',
+    SUCCESS: 'success',
+    WARNING: 'warning',
+    ERROR: 'error'
+});
+
 var ChaoButton = function(options = {}) {
     this._options = options;
     this.$target = this._options.target;
     this.$element = null;
+
+    ChaoAttributeInterface.call(this);
 
     this.renderTitle = function() {
         let _title = ``;
@@ -29,6 +38,16 @@ var ChaoButton = function(options = {}) {
 
     this.renderIcon = function() {
         return `<span class="chao-btn-icon ${this._options.icon}"></span>`;
+    }
+
+    this.getSeverity = function() {
+        let _severity = ChaoButtonSeverity.INFO;
+
+        if (Object.values(ChaoButtonSeverity).includes(this._options.severity)) {
+            _severity = this._options.severity;
+        }
+
+        return `chao-btn-${_severity}`;
     }
 
     this.init = function(options) {
@@ -54,9 +73,9 @@ var ChaoButton = function(options = {}) {
                 break;
         }
 
-        let _id = this._options.customId !== undefined && this._options.customId !== null ? this._options.customId : this.$target.attr('id');
+        let _id = this.getId();
         let _btn = `
-            <button class="chao-btn chao-${this._options.type}${this._options.type === ChaoButtonType.iconWithoutBorderBtn ? ' chao-btn-icon-without-border' : ''} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" ${_id !== undefined && _id !== null ? `id="chao-${_id}"` : ''} type="button" ${this._options.disabled ? 'disabled' : ''}>
+            <button class="chao-btn chao-${this._options.type} ${this.getSeverity()}${this._options.type === ChaoButtonType.iconWithoutBorderBtn ? ' chao-btn-icon-without-border' : ''} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" ${_id !== undefined && _id !== null ? `id="chao-${_id}"` : ''} type="button" ${this._options.disabled ? 'disabled' : ''}>
                 ${_icon}
                 ${_title}
             </button>

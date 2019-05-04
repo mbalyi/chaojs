@@ -1,0 +1,34 @@
+.chao-input-btn {
+    display: flex;
+}
+
+.chao-input-btn > .chao-input {
+    flex-grow: 1;
+    border-radius: 0.25em 0 0 0.25em;
+}
+
+.chao-input-btn > .chao-btn {
+    border-radius: 0 0.25em 0.25em 0;
+}
+
+.chao-input-btn > .chao-btn:not(.chao-disabled):not(:hover) .chao-btn-title,
+.chao-input-btn > .chao-btn:not(.chao-disabled):not(:hover) .chao-btn-icon {
+    color: #fff;
+}
+
+.chao-input-btn > .chao-btn,
+.chao-input-btn > .chao-btn.chao-btn-info {
+    background-color: #2196F3;
+}
+
+.chao-input-btn > .chao-btn.chao-btn-success {
+    background-color: #4bae4f;
+}
+
+.chao-input-btn > .chao-btn.chao-btn-warning {
+    background-color: #fe5621;
+}
+
+.chao-input-btn > .chao-btn.chao-btn-error {
+    background-color: #f3422b;
+}

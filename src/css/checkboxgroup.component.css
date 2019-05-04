@@ -47,9 +47,9 @@
 }
 
 .chao-checkbox-group .chao-checkbox-btn:first-child {
-    border-radius: 0.5em 0 0 0.5em;
+    border-radius: 0.25em 0 0 0.25em;
 }
 
 .chao-checkbox-group .chao-checkbox-btn:last-child {
-    border-radius: 0 0.5em 0.5em 0;
+    border-radius: 0 0.25em 0.25em 0;
 }
