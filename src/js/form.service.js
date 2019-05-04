@@ -22,8 +22,8 @@ var ChaoFormService = (function() {
                     self.$element.addClass(`chao-${_availability}`);
                     $element.attr(_availability, _availability);
                 }
-                self._options.disabled = _state;
-                return self._options.disabled;
+                self._options[_availability] = _state;
+                return self._options[_availability];
             } catch(e) {
                 console.error(`Chao Form service couldn't ${_availability === ChaoDOMAvailability.disabled ? 'disable' : 'readonly'} component. \n`, e);
             }
@@ -36,7 +36,8 @@ var ChaoFormService = (function() {
 
         let _readonlyElement = function(_state = true) {
             let self = this;
-            return ChaoFormService.getInstance().setAvailable(self, !_state, ChaoDOMAvailability.readonly);
+            self._options.readonly = !ChaoFormService.getInstance().setAvailable(self, !_state, ChaoDOMAvailability.readonly);
+            return self._options.readonly;
         }
 
         return {

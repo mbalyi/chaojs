@@ -10,20 +10,42 @@ var ChaoInputButton = function(options = {}) {
     this._input = null;
     this._btn = null;
 
+    ChaoAttributeInterface.call(this);
+
+    this.getAttributes = function() {
+        this._options.value = this.getValue();
+        this._options.name = this.getName();
+        this._options.placeholder = this.getPlaceHolder();
+        this._options.disabled = this.getDisabled();
+        this._options.readonly = this.getReadonly();
+        this._options.required = this.getRequired();
+        this._options.title = this.getTitle();
+    }
+
     this.renderInput = function() {
-        this._input = $('input', this.$element).chaoInput(this._options);
+        let _options = Object.assign({}, this._options);
+        _options.type = this._options.inputType;
+        this._input = $('input', this.$element).chaoInput(_options);
     }
 
     this.renderBtn = function() {
-        if (this._options.type === ChaoButtonType.iconWithoutBorderBtn) {
-            this._options.type = ChaoButtonType.iconBtn;
+        let _options = Object.assign({}, this._options);
+        if (this._options.buttonType === ChaoButtonType.iconWithoutBorderBtn) {
+            this._options.buttonType = ChaoButtonType.iconBtn;
         }
-        this._btn = $('button', this.$element).chaoButton(this._options);
+        if (this._options.readonly === true) {
+            _options.disabled = true;
+        }
+        _options.title = this._options.buttonTitle;
+
+        _options.type = this._options.buttonType;
+        this._btn = $('button', this.$element).chaoButton(_options);
     }
 
     this.init = function() {
-        let _id = this._options.customId !== undefined && this._options.customId !== null ? this._options.customId : this.$target.attr('id');
-        let _inputBtn = `<div class="chao-input-btn ${this._options.customClass ? this._options.customClass : ''}" ${_id !== undefined && _id !== null ? `id="chao-${_id}"` : ''}><input><button></button></div>`;
+        this.getAttributes();
+        let _id = this.getId();
+        let _inputBtn = `<div class="chao-input-btn ${this._options.customClass ? this._options.customClass : ''}"${_id !== undefined && _id !== null ? ` id="chao-${_id}"` : ''}><input><button></button></div>`;
         this.$element = $(_inputBtn);
         this.$target.replaceWith(this.$element);
         this.renderInput();
@@ -34,6 +56,10 @@ var ChaoInputButton = function(options = {}) {
     this.enable = function(state = true) {
         this._input.enable(state);
         this._btn.enable(state);
+
+        if (this._input._options.readonly === state) {
+            this._input.readonly(!state);
+        }
     }
 
     this.readonly = function(state = true) {

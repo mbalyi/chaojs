@@ -22,6 +22,8 @@ var ChaoButton = function(options = {}) {
     this.$target = this._options.target;
     this.$element = null;
 
+    ChaoAttributeInterface.call(this);
+
     this.renderTitle = function() {
         let _title = ``;
 
@@ -71,7 +73,7 @@ var ChaoButton = function(options = {}) {
                 break;
         }
 
-        let _id = this._options.customId !== undefined && this._options.customId !== null ? this._options.customId : this.$target.attr('id');
+        let _id = this.getId();
         let _btn = `
             <button class="chao-btn chao-${this._options.type} ${this.getSeverity()}${this._options.type === ChaoButtonType.iconWithoutBorderBtn ? ' chao-btn-icon-without-border' : ''} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" ${_id !== undefined && _id !== null ? `id="chao-${_id}"` : ''} type="button" ${this._options.disabled ? 'disabled' : ''}>
                 ${_icon}
