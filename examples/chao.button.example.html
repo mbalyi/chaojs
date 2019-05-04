@@ -43,6 +43,7 @@
                 disabled: false,
                 type: ChaoButtonType.iconBtn,
                 icon: 'fa fa-trash',
+                severity: ChaoButtonSeverity.ERROR,
                 callback: {
                     onClick: function(res) {
                         console.log('Btn click 2: ', res);
@@ -59,6 +60,7 @@
                 disabled: false,
                 type: ChaoButtonType.wIconBtn,
                 icon: 'fa fa-check',
+                severity: ChaoButtonSeverity.SUCCESS,
                 title: 'Button With Icon',
                 callback: {
                     onClick: function(res) {
@@ -78,6 +80,7 @@
 
             var options5 = Object.assign({}, options2);
             options5 = Object.assign(options5, {
+                severity: ChaoButtonSeverity.WARNING,
                 target: $('#chaoBtn5'),
                 disabled: true
             });
