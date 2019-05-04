@@ -110,8 +110,3 @@ jQuery.fn.chaoNotification = function(options = {}) {
 
     return _notification;
 };
-
-
-// /** For unit testing */
-// module.exports.ChaoNotificationSeverity = ChaoNotificationSeverity;
-// module.exports.ChaoNotification = ChaoNotification;

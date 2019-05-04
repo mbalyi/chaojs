@@ -102,6 +102,3 @@ var ChaoNotificationService = (function() {
 $.fn.chaoNotificationService = function() {
     return ChaoNotificationService.getInstance();
 }
-
-/** For unit testing */
-// module.exports.ChaoNotificationService = ChaoNotificationService;

@@ -104,7 +104,3 @@ jQuery.fn.chaoButton = function(options = {}) {
 
     return _button;
 };
-
-/** For unit testing */
-// module.exports.ChaoButtonType = ChaoButtonType;
-// module.exports.ChaoButton = ChaoButton;

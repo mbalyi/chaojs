@@ -54,8 +54,4 @@ var ChaoFormService = (function() {
             return _instance;
         }
     }
- })()
-
-/** For unit testing */
-// module.exports.ChaoDOMAvailability = ChaoDOMAvailability;
-// module.exports.ChaoFormService = ChaoFormService;
+ })();
