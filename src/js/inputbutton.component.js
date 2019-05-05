@@ -30,8 +30,8 @@ var ChaoInputButton = function(options = {}) {
 
     this.renderBtn = function() {
         let _options = Object.assign({}, this._options);
-        if (this._options.buttonType === ChaoButtonType.iconWithoutBorderBtn) {
-            this._options.buttonType = ChaoButtonType.iconBtn;
+        if (this._options.buttonType === ChaoButtonType.JUST_ICON_BUTTON) {
+            this._options.buttonType = ChaoButtonType.ICON_BUTTON;
         }
         if (this._options.readonly === true) {
             _options.disabled = true;

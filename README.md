@@ -29,7 +29,7 @@ More examples are available under [examples](https://github.com/mbalyi/chaojs/tr
         target: $('#chaoBtn'),
         customClass: 'defaultBtn',
         disabled: false,
-        type: ChaoButtonType.btn,
+        type: ChaoButtonType.BUTTON,
         callback: {
             onClick: function(res) {
                 console.log('Button click event: ', res);

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JS Progress Bar component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JS Progress Bar component.">
+        <meta name="keywords" content="Chao,Progress,Bar,ProgressBar,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../chao.min.css">
+        <link rel="stylesheet" type="text/css" href="./../src/css/progressbar.component.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../chao.min.js"></script>
+        <script type="application/javascript" src="./../src/js/progressbar.component.js"></script>
+    </head>
+    <body style="margin: 125px 50px 500px 400px;">
+
+        <div id="progress"></div>
+        <button type="button" id="increase">Increase</button>
+        <button type="button" id="reset">Reset</button>
+        <script>
+            var increase = false;
+            var progress = $('#progress').chaoProgressBar({
+                severity: ChaoSeverity.INFO
+            });
+
+            var _increase = $('#increase').chaoButton({
+                type: ChaoButtonType.WITH_ICON_BUTTON,
+                severity: ChaoSeverity.SUCCESS,
+                icon: 'fa fa-plus',
+                callback: {
+                    onMouseDown: function(e) {
+                        increase = true;
+                        console.log(`Mouse down::Increase: ${increase}`);
+                    },
+                    onMouseUp: function(e) {
+                        increase = false;
+                        console.log(`Mouse up::Increase: ${increase}`);
+                    }
+                }
+            });
+            var _reset = $('#reset').chaoButton({
+                type: ChaoButtonType.WITH_ICON_BUTTON,
+                severity: ChaoSeverity.WARNING,
+                icon: 'fa fa-minus',
+                callback: {
+                    onClick: function(e) {
+                        progress.value(0);
+                    }
+                }
+            });
+
+            var delay=250;
+            var nextTime=0;
+            function watcher(time){
+                requestAnimationFrame(watcher);
+                if(time < nextTime){
+                    return;
+                }
+                nextTime = time + delay;
+
+                if(increase){
+                    progress.value(progress.value() + 1);
+                }
+            }
+            requestAnimationFrame(watcher);
+        </script>
+
+    </body>
+</html>
