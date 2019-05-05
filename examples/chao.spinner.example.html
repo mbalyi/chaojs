@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JSSpinner component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JSSpinner component.">
+        <meta name="keywords" content="Chao,Spinner,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../chao.min.css">
+        <link rel="stylesheet" type="text/css" href="./../src/css/spinner.component.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../chao.min.js"></script>
+        <script type="application/javascript" src="./../src/js/spinner.component.js"></script>
+
+        <style>
+            body {
+                margin: 125px 50px 500px 400px;
+            }
+
+            body > div {
+                margin-bottom: 1%;
+            }
+
+            .container {
+                margin: auto;
+            }
+
+            .container h2 {
+                display: inline-block;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <div class="container" id="rendered">
+            <h2>Spinner component: </h2>
+        </div>
+        <div class="container">
+            <button type="button" id="show">Show</button>
+            <button type="button" id="hide">Hide</button>
+            <button type="button" id="destroy">Destroy</button>
+            <div id="spinner"></div>
+        </div>
+        
+        <script>
+            var _rendered = $('#rendered').chaoSpinner();
+            var _spinner = $('#spinner').chaoSpinner({
+                replace: true,
+                visible: false
+            });
+
+            var _show = $('#show').chaoButton({
+                type: ChaoButtonType.WITH_ICON_BUTTON,
+                severity: ChaoSeverity.SUCCESS,
+                icon: 'fa fa-eye',
+                callback: {
+                    onClick: function(e) {
+                        _spinner.show();
+                    }
+                }
+            });
+            var _hide = $('#hide').chaoButton({
+                type: ChaoButtonType.WITH_ICON_BUTTON,
+                severity: ChaoSeverity.INFO,
+                icon: 'fa fa-eye-slash',
+                callback: {
+                    onClick: function(e) {
+                        _spinner.hide();
+                    }
+                }
+            });
+            var _destroy = $('#destroy').chaoButton({
+                type: ChaoButtonType.WITH_ICON_BUTTON,
+                severity: ChaoSeverity.ERROR,
+                icon: 'fa fa-fire',
+                callback: {
+                    onClick: function(e) {
+                        _spinner.destroy();
+                    }
+                }
+            });
+        </script>
+
+    </body>
+</html>
