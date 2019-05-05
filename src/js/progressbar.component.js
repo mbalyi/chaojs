@@ -15,14 +15,38 @@ var ChaoProgressBar = function(options = {}) {
 
         if (Object.values(ChaoSeverity).includes(this._options.severity)) {
             _severity = this._options.severity;
+        } else {
+            this._options.severity = _severity;
         }
 
         return `chao-progress-${_severity}`;
     }
 
+    this.getType = function() {
+        let _type = ChaoProgressBarType.DEFAULT;
+
+        if (Object.values(ChaoProgressBarType).includes(this._options.type)) {
+            _type = this._options.type;
+        } else {
+            this._options.type = _type;
+        }
+
+        return `chao-progress-${_type}`;
+    }
+
+    this.renderStatus = function() {
+        let _status = '';
+        if (this._options.type == undefined || this._options.type === ChaoProgressBarType.DEFAULT) {
+            _status = `<div class="chao-status"></div>`;
+        }
+        return _status;
+    }
+
     this.init = function() {
         let _id = this.getId();
-        let _bar = `<div class="chao-progress-bar ${this.getSeverity()}${this._options.customClass ? ` ${this._options.customClass}` : ''}"${_id !== undefined && _id !== null ? ` id="chao-${_id}"` : ''}><div class="chao-progress"></div></div>`;
+        let _bar = `<div class="chao-progress-bar ${this.getSeverity()} ${this.getType()}${this._options.customClass ? ` ${this._options.customClass}` : ''}"${_id !== undefined && _id !== null ? ` id="chao-${_id}"` : ''}>
+                        <div class="chao-progress"></div>${this.renderStatus()}
+                    </div>`;
         this.$element = $(_bar);
         this._setupValue();
         this.$target.replaceWith(this.$element);
@@ -34,13 +58,14 @@ var ChaoProgressBar = function(options = {}) {
             !$.isNumeric(this._options.value) || 
             this._options.value < 0 || this._options.value > 100) {
                 this._options.value = 0;
-        } else {
-            this.value();
         }
+        this.value(this._options.value);
     }
 
     this._value = async function(_value) {
-        $('.chao-progress', this.$element).css('width', `${_value}%`);
+        let _val = `${_value}%`;
+        $('.chao-progress', this.$element).css('width', _val);
+        $('.chao-status', this.$element).html(_val);
     }
 
     this.value = function(_value) {

@@ -31,6 +31,8 @@ var ChaoButton = function(options = {}) {
 
         if (Object.values(ChaoSeverity).includes(this._options.severity)) {
             _severity = this._options.severity;
+        } else {
+            this._options.severity = _severity;
         }
 
         return `chao-btn-${_severity}`;

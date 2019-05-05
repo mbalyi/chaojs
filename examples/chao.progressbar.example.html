@@ -14,18 +14,45 @@
         <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
         <script type="application/javascript" src="./../chao.min.js"></script>
         <script type="application/javascript" src="./../src/js/progressbar.component.js"></script>
+
+        <style>
+            body {
+                margin: 125px 50px 500px 400px;
+            }
+
+            body > div {
+                margin-bottom: 1%;
+            }
+
+            .container {
+                width: fit-content;
+                margin: auto;
+            }
+        </style>
+
     </head>
-    <body style="margin: 125px 50px 500px 400px;">
+    <body>
 
         <div id="progress"></div>
-        <button type="button" id="increase">Increase</button>
-        <button type="button" id="reset">Reset</button>
-        <button type="button" id="decrease">Decrease</button>
+        <div id="thin"></div>
+
+        <div class="container">
+            <button type="button" id="increase">Increase</button>
+            <button type="button" id="reset">Reset</button>
+            <button type="button" id="decrease">Decrease</button>
+        </div>
+        
         <script>
             var increase = false;
             var decrease = false;
             var progress = $('#progress').chaoProgressBar({
                 severity: ChaoSeverity.INFO
+            });
+
+            var thin = $('#thin').chaoProgressBar({
+                severity: ChaoSeverity.SUCCESS,
+                type: ChaoProgressBarType.THIN,
+                value: 100
             });
 
             var _increase = $('#increase').chaoButton({
@@ -80,10 +107,12 @@
 
                 if(increase){
                     progress.value(progress.value() + 1);
+                    thin.value(thin.value() - 1);
                 }
 
                 if(decrease){
                     progress.value(progress.value() - 1);
+                    thin.value(thin.value() + 1);
                 }
             }
             requestAnimationFrame(watcher);
