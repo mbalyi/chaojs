@@ -59,6 +59,7 @@ More examples are available under [examples](https://github.com/mbalyi/chaojs/tr
 - Dialog
 - Notifications / Toasts
 - Progress Bar
+- Spinner
 
 ## Scope of beta release
 - Date, Time, DateTime Picker

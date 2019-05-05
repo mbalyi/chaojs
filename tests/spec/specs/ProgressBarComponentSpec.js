@@ -98,6 +98,13 @@ describe("ProgressBarComponent", function() {
         expect($('.chao-status', $progress).html()).toEqual(`${_progress.value()}%`);
     });
 
+    it("[Chao Progress Bar Component] init result and data on DOM are same.", function() {
+        // console.log(`[Chao Progress Bar Component] init result and data on DOM are same.`);
+        let _data = $('#progress').chaoProgressBar();
+        let _dataFromDOM = $('#chao-progress').data('chaoProgressBar');
+        expect(_data).toEqual(_dataFromDOM);
+    });
+
     /** TODO: Need more tests for code and function coverage!!! */
 });
   
