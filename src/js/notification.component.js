@@ -51,7 +51,7 @@ var ChaoNotification = function(options = {}) {
     this._renderCloseButton = function() {
         let self = this;
         this._closeBtn = $('.chao-notification-close button', this.$element).chaoButton({
-            type: ChaoButtonType.iconWithoutBorderBtn,
+            type: ChaoButtonType.JUST_ICON_BUTTON,
             icon: 'fa fa-times',
             callback: {
                 onClick: function() {

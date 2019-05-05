@@ -3,20 +3,6 @@
  */
 "use strict";
 
-var ChaoButtonType = Object.freeze({
-    btn: 'button',
-    iconBtn: 'iconButton',
-    iconWithoutBorderBtn: 'iconWithoutBorderButton',
-    wIconBtn: 'buttonWithIcon'
-});
-
-var ChaoButtonSeverity = Object.freeze({
-    INFO: 'info',
-    SUCCESS: 'success',
-    WARNING: 'warning',
-    ERROR: 'error'
-});
-
 var ChaoButton = function(options = {}) {
     this._options = options;
     this.$target = this._options.target;
@@ -41,10 +27,12 @@ var ChaoButton = function(options = {}) {
     }
 
     this.getSeverity = function() {
-        let _severity = ChaoButtonSeverity.INFO;
+        let _severity = ChaoSeverity.INFO;
 
-        if (Object.values(ChaoButtonSeverity).includes(this._options.severity)) {
+        if (Object.values(ChaoSeverity).includes(this._options.severity)) {
             _severity = this._options.severity;
+        } else {
+            this._options.severity = _severity;
         }
 
         return `chao-btn-${_severity}`;
@@ -55,19 +43,19 @@ var ChaoButton = function(options = {}) {
         let _title = ``;
 
         if (this._options.type == null) {
-            this._options.type = ChaoButtonType.btn;
+            this._options.type = ChaoButtonType.BUTTON;
         }
 
         switch(this._options.type) {
-            case ChaoButtonType.iconBtn:
-            case ChaoButtonType.iconWithoutBorderBtn:
+            case ChaoButtonType.ICON_BUTTON:
+            case ChaoButtonType.JUST_ICON_BUTTON:
                 _icon = this.renderIcon();
                 break;
-            case ChaoButtonType.wIconBtn:
+            case ChaoButtonType.WITH_ICON_BUTTON:
                 _title = this.renderTitle();
                 _icon = this.renderIcon();
                 break;
-            case ChaoButtonType.btn:
+            case ChaoButtonType.BUTTON:
             default:
                 _title = this.renderTitle();
                 break;
@@ -75,7 +63,7 @@ var ChaoButton = function(options = {}) {
 
         let _id = this.getId();
         let _btn = `
-            <button class="chao-btn chao-${this._options.type} ${this.getSeverity()}${this._options.type === ChaoButtonType.iconWithoutBorderBtn ? ' chao-btn-icon-without-border' : ''} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" ${_id !== undefined && _id !== null ? `id="chao-${_id}"` : ''} type="button" ${this._options.disabled ? 'disabled' : ''}>
+            <button class="chao-btn chao-${this._options.type} ${this.getSeverity()}${this._options.type === ChaoButtonType.JUST_ICON_BUTTON ? ' chao-btn-icon-without-border' : ''} ${this._options.customClass ? this._options.customClass : ''} ${this._options.disabled ? 'chao-disabled' : ''}" ${_id !== undefined && _id !== null ? `id="chao-${_id}"` : ''} type="button" ${this._options.disabled ? 'disabled' : ''}>
                 ${_icon}
                 ${_title}
             </button>
@@ -106,6 +94,12 @@ var ChaoButton = function(options = {}) {
         $(this.$element).on('mousedown', e => {
             if (!self._options.disabled && self._options.callback && self._options.callback.onMouseDown) {
                 self._options.callback.onMouseDown(e);
+            }
+        });
+
+        $(this.$element).on('mouseup', e => {
+            if (!self._options.disabled && self._options.callback && self._options.callback.onMouseUp) {
+                self._options.callback.onMouseUp(e);
             }
         });
     }

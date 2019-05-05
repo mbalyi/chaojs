@@ -30,8 +30,8 @@ var ChaoInputButton = function(options = {}) {
 
     this.renderBtn = function() {
         let _options = Object.assign({}, this._options);
-        if (this._options.buttonType === ChaoButtonType.iconWithoutBorderBtn) {
-            this._options.buttonType = ChaoButtonType.iconBtn;
+        if (this._options.buttonType === ChaoButtonType.JUST_ICON_BUTTON) {
+            this._options.buttonType = ChaoButtonType.ICON_BUTTON;
         }
         if (this._options.readonly === true) {
             _options.disabled = true;
@@ -65,6 +65,15 @@ var ChaoInputButton = function(options = {}) {
     this.readonly = function(state = true) {
         this._input.readonly(state);
         this._btn.enable(!state);
+    }
+
+    this.value = function(_value) {
+        if (_value !== undefined) {
+            this._input.value(_value);
+            this._options.value = _value;
+        }
+
+        return this._options.value;
     }
 
     this.init();

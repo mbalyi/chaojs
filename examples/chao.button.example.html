@@ -26,7 +26,7 @@
                 target: $('#chaoBtn1'),
                 customClass: 'defaultBtn',
                 disabled: false,
-                type: ChaoButtonType.btn,
+                type: ChaoButtonType.BUTTON,
                 callback: {
                     onClick: function(res) {
                         console.log('Btn click 1: ', res);
@@ -41,9 +41,9 @@
                 target: $('#chaoBtn2'),
                 customClass: 'defaultBtn',
                 disabled: false,
-                type: ChaoButtonType.iconBtn,
+                type: ChaoButtonType.ICON_BUTTON,
                 icon: 'fa fa-trash',
-                severity: ChaoButtonSeverity.ERROR,
+                severity: ChaoSeverity.ERROR,
                 callback: {
                     onClick: function(res) {
                         console.log('Btn click 2: ', res);
@@ -58,9 +58,9 @@
                 target: $('#chaoBtn3'),
                 customClass: 'defaultBtn',
                 disabled: false,
-                type: ChaoButtonType.wIconBtn,
+                type: ChaoButtonType.WITH_ICON_BUTTON,
                 icon: 'fa fa-check',
-                severity: ChaoButtonSeverity.SUCCESS,
+                severity: ChaoSeverity.SUCCESS,
                 title: 'Button With Icon',
                 callback: {
                     onClick: function(res) {
@@ -80,7 +80,7 @@
 
             var options5 = Object.assign({}, options2);
             options5 = Object.assign(options5, {
-                severity: ChaoButtonSeverity.WARNING,
+                severity: ChaoSeverity.WARNING,
                 target: $('#chaoBtn5'),
                 disabled: true
             });

@@ -87,7 +87,8 @@ var setupHtmlContext = function() {
       let results = {
         click: false,
         mouseEnter: false,
-        mouseDown: false
+        mouseDown: false,
+        mouseUp: false
       };
       let _data = $('#chaoBtn1').chaoButton({
         callback: {
@@ -99,6 +100,9 @@ var setupHtmlContext = function() {
           },
           onMouseDown: function(res) {
             results.mouseDown = true;
+          },
+          onMouseUp: function(res) {
+            results.mouseUp = true;
           }
         }
       });
@@ -112,6 +116,9 @@ var setupHtmlContext = function() {
 
       $btn.mousedown();
       expect(results.mouseDown).toBeTruthy();
+
+      $btn.mouseup();
+      expect(results.mouseUp).toBeTruthy();
     });
   
     it("[Chao Button Component] field can be enabled and disabled.", function() {

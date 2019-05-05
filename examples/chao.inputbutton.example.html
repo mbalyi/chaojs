@@ -36,7 +36,7 @@
             $('.input-button').chaoInputButton({
                 customClass: 'chao-design',
                 disabled: false,
-                buttonType: ChaoButtonType.btn,
+                buttonType: ChaoButtonType.BUTTON,
                 inputType: 'number',
                 buttonTitle: 'Submit',
                 callback: {
@@ -51,30 +51,30 @@
 
             $('.success-button').chaoInputButton({
                 disabled: false,
-                buttonType: ChaoButtonType.wIconBtn,
+                buttonType: ChaoButtonType.WITH_ICON_BUTTON,
                 buttonTitle: 'Send',
                 icon: 'fa fa-check',
-                severity: ChaoButtonSeverity.SUCCESS
+                severity: ChaoSeverity.SUCCESS
             });
 
             $('.error-button').chaoInputButton({
                 disabled: false,
-                buttonType: ChaoButtonType.iconBtn,
+                buttonType: ChaoButtonType.ICON_BUTTON,
                 icon: 'fa fa-exclamation-circle',
-                severity: ChaoButtonSeverity.ERROR
+                severity: ChaoSeverity.ERROR
             });
 
             $('.disabled-button').chaoInputButton({
                 disabled: true,
-                buttonType: ChaoButtonType.btn,
-                severity: ChaoButtonSeverity.WARNING,
+                buttonType: ChaoButtonType.BUTTON,
+                severity: ChaoSeverity.WARNING,
                 buttonTitle: 'Alert'
             });
 
             $('.readonly-button').chaoInputButton({
                 readonly: true,
-                buttonType: ChaoButtonType.btn,
-                severity: ChaoButtonSeverity.SUCCESS,
+                buttonType: ChaoButtonType.BUTTON,
+                severity: ChaoSeverity.SUCCESS,
                 value: 'Message was sent to client!',
                 buttonTitle: 'Send'
             });

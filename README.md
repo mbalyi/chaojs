@@ -4,7 +4,7 @@ Chao.JS is an open-source library with few common HTML component for JavaScript.
 
 Most of the solutions is similar to kendoUI, but with many simplification and with unique CSS design.
 
-**Version**: 0.9.5.
+**Version**: 0.10.6.
 
 ## Installation and import
 
@@ -29,7 +29,7 @@ More examples are available under [examples](https://github.com/mbalyi/chaojs/tr
         target: $('#chaoBtn'),
         customClass: 'defaultBtn',
         disabled: false,
-        type: ChaoButtonType.btn,
+        type: ChaoButtonType.BUTTON,
         callback: {
             onClick: function(res) {
                 console.log('Button click event: ', res);
@@ -58,11 +58,12 @@ More examples are available under [examples](https://github.com/mbalyi/chaojs/tr
 - Checkpoint Progress Bar
 - Dialog
 - Notifications / Toasts
+- Progress Bar
+- Spinner
 
 ## Scope of beta release
 - Date, Time, DateTime Picker
 - Dropdown
-- Progress bars
 
 ## Out of Scope from Beta release
 - Data Table
