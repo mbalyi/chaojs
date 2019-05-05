@@ -1,0 +1,31 @@
+/** Basic Design */
+.chao-progress-bar {
+    width: 100%;
+    border: 0 none;
+    height: 24px;
+    background-color: #eaeaea;
+    border-radius: 0.25em;
+}
+
+.chao-progress-bar .chao-progress {
+    height: 100%;
+    width: 0%;
+    border-radius: 0.25em;
+}
+
+/** Styles */
+.chao-progress-bar.chao-progress-info .chao-progress {
+    background-color: #2196F3;
+}
+
+.chao-progress-bar.chao-progress-success .chao-progress {
+    background-color: #4bae4f;
+}
+
+.chao-progress-bar.chao-progress-warning .chao-progress {
+    background-color: #fe5621;
+}
+
+.chao-progress-bar.chao-progress-error .chao-progress {
+    background-color: #f3422b;
+}

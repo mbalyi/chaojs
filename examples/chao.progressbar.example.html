@@ -20,8 +20,10 @@
         <div id="progress"></div>
         <button type="button" id="increase">Increase</button>
         <button type="button" id="reset">Reset</button>
+        <button type="button" id="decrease">Decrease</button>
         <script>
             var increase = false;
+            var decrease = false;
             var progress = $('#progress').chaoProgressBar({
                 severity: ChaoSeverity.INFO
             });
@@ -41,9 +43,24 @@
                     }
                 }
             });
-            var _reset = $('#reset').chaoButton({
+            var _decrease = $('#decrease').chaoButton({
                 type: ChaoButtonType.WITH_ICON_BUTTON,
                 severity: ChaoSeverity.WARNING,
+                icon: 'fa fa-minus',
+                callback: {
+                    onMouseDown: function(e) {
+                        decrease = true;
+                        console.log(`Mouse down::Decrease: ${decrease}`);
+                    },
+                    onMouseUp: function(e) {
+                        decrease = false;
+                        console.log(`Mouse up::Decrease: ${decrease}`);
+                    }
+                }
+            });
+            var _reset = $('#reset').chaoButton({
+                type: ChaoButtonType.BUTTON,
+                severity: ChaoSeverity.INFO,
                 icon: 'fa fa-minus',
                 callback: {
                     onClick: function(e) {
@@ -52,7 +69,7 @@
                 }
             });
 
-            var delay=250;
+            var delay=10;
             var nextTime=0;
             function watcher(time){
                 requestAnimationFrame(watcher);
@@ -63,6 +80,10 @@
 
                 if(increase){
                     progress.value(progress.value() + 1);
+                }
+
+                if(decrease){
+                    progress.value(progress.value() - 1);
                 }
             }
             requestAnimationFrame(watcher);
