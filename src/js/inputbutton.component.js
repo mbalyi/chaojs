@@ -67,6 +67,15 @@ var ChaoInputButton = function(options = {}) {
         this._btn.enable(!state);
     }
 
+    this.value = function(_value) {
+        if (_value !== undefined) {
+            this._input.value(_value);
+            this._options.value = _value;
+        }
+
+        return this._options.value;
+    }
+
     this.init();
 
     return this;

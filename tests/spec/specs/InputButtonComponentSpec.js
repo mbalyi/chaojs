@@ -238,5 +238,36 @@ describe("InputButtonComponent", function() {
     expect($btn).not.toHaveClass('chao-disabled');
   });
 
+  it("[Chao InputButton Component] value function.", function() {
+    // console.log(`[Chao InputButton Component] value function.`);
+    let _text = 'chao';
+    let _text2 = 'bhao';
+    let _inputBtn = $('#chaoInputButton').chaoInputButton({
+      value: _text
+    });
+    let $inputBtn = $('.chao-input-btn');
+    let $input = $('.chao-input', $inputBtn);
+    let $btn = $('.chao-btn', $inputBtn);
+
+    expect(_inputBtn.value()).toEqual(_text);
+    expect(_inputBtn._options.value).toEqual(_text);
+    expect($input.val()).toEqual(_text);
+    expect($input.data('chaoInput').value()).toEqual(_text);
+    expect($input.data('chaoInput')._options.value).toEqual(_text);
+
+    _inputBtn.value(_text2);
+    expect(_inputBtn.value()).not.toEqual(_text);
+    expect(_inputBtn._options.value).not.toEqual(_text);
+    expect($input.val()).not.toEqual(_text);
+    expect($input.data('chaoInput').value()).not.toEqual(_text);
+    expect($input.data('chaoInput')._options.value).not.toEqual(_text);
+
+    expect(_inputBtn.value()).toEqual(_text2);
+    expect(_inputBtn._options.value).toEqual(_text2);
+    expect($input.val()).toEqual(_text2);
+    expect($input.data('chaoInput').value()).toEqual(_text2);
+    expect($input.data('chaoInput')._options.value).toEqual(_text2);
+  });
+
   /** TODO: Need more tests for code and function coverage!!! */
 });
