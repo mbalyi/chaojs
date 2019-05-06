@@ -8,6 +8,9 @@ var ChaoSwitch = function(options = {}) {
     this.$target = this._options.target;
     this.$element = null;
 
+    ChaoFormInterface.call(this);
+    delete this.readonly;
+
     this.getChecked = function() {
         return this._options.defaultChecked || this.$target.is(':checked');
     }
@@ -55,8 +58,6 @@ var ChaoSwitch = function(options = {}) {
         }
         return value;
     }
-
-    this.enable = ChaoFormService.getInstance().enable;
 
     this.value = function(_value) {
         if (_value !== undefined) {

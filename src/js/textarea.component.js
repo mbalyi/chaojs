@@ -1,9 +1,9 @@
 /**
- * CHAO.JS: Input component
+ * CHAO.JS: Textarea component
  */
 "use strict";
 
-var ChaoInput = function(options = {}) {
+var ChaoTextarea = function(options = {}) {
     this._options = options;
     this.$target = this._options.target;
     this.$element = null;
@@ -18,27 +18,30 @@ var ChaoInput = function(options = {}) {
             let _name = this.getName();
             let _title = this.getTitle();
             let _placeholder = this.getPlaceHolder();
-            let _type = this.getType();
             let _disabled = this.getDisabled();
             let _readonly = this.getReadonly();
-            let _input = `<input type="${_type}" 
-                                class="chao-input chao-${_type} ${this._options.customClass ? this._options.customClass : ''} ${_disabled ? 'chao-disabled' : ''} ${_readonly ? 'chao-readonly' : ''}" 
+            let _rows = this.getRows();
+            let _cols = this.getCols();
+            let _maxlength = this.getMaxLength();
+            let _area = `<textarea class="chao-textarea ${this._options.customClass ? this._options.customClass : ''} ${_disabled ? 'chao-disabled' : ''} ${_readonly ? 'chao-readonly' : ''}" 
                                 ${_id !== undefined && _id !== null ? `id="chao-${_id}"` : ''} 
                                 ${_name ? `name="${_name}"` : ''}
                                 ${_placeholder ? `placeholder="${_placeholder}"` : ''}
                                 ${_title ? `title="${_title}"` : ''}
-                                ${_value ? `value="${_value}"` : ''}
                                 ${_name ? `name="${_name}"` : ''}
                                 ${_disabled ? 'disabled' : ''}
                                 ${_readonly ? 'readonly' : ''}
-                                ${this.getRequired() ? 'required' : ''}>`;
+                                ${$.isNumeric(_rows) ? `rows="${_rows}"` : ''}
+                                ${$.isNumeric(_cols) ? `cols="${_cols}"` : ''}
+                                ${$.isNumeric(_maxlength) ? `maxlength="${_maxlength}"` : ''}
+                                ${this.getRequired() ? 'required' : ''}>${_value !== undefined && _value !== null ? _value : ''}</textarea>`;
 
-            this.$element = $(_input);
+            this.$element = $(_area);
             this.$target.replaceWith(this.$element);
             this.handleBindings();
-            this.$element.data('chaoInput', this);
+            this.$element.data('chaoTextarea', this);
         } catch (e) {
-            console.error(`Error happened during the Chao.JS input component initialization. \n`, e);
+            console.error(`Error happened during the Chao.JS textarea component initialization. \n`, e);
         }
     }
 
@@ -91,9 +94,9 @@ var ChaoInput = function(options = {}) {
     return this;
 }
 
-jQuery.fn.chaoInput = function(options = {}) {
+jQuery.fn.chaoTextarea = function(options = {}) {
     options.target = this;
-    let _input = new ChaoInput(options);
+    let _input = new ChaoTextarea(options);
 
     return _input;
 };

@@ -9,6 +9,8 @@ var ChaoButton = function(options = {}) {
     this.$element = null;
 
     ChaoAttributeInterface.call(this);
+    ChaoFormInterface.call(this);
+    delete this.readonly;
 
     this.renderTitle = function() {
         let _title = ``;
@@ -103,8 +105,6 @@ var ChaoButton = function(options = {}) {
             }
         });
     }
-
-    this.enable = ChaoFormService.getInstance().enable;
 
     this.init(this._options);
 

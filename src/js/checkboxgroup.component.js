@@ -10,6 +10,8 @@ var ChaoCheckboxGroup = function(options = {}) {
     this.$target = this._options.target;
     this.$element = null;
 
+    ChaoFormInterface.call(this);
+
     this.render = function() {
         let inputs = '';
         this._data.forEach(element => {
@@ -92,8 +94,10 @@ var ChaoCheckboxGroup = function(options = {}) {
                 this.$element.addClass('chao-disabled');
             }
             for (let _element of this._data) {
+                let _formInt = new ChaoFormInterface();
                 let _partElement = Object.assign({
-                    enable: ChaoFormService.getInstance().enable
+                    enable: _formInt.enable,
+                    _setAvailability: _formInt._setAvailability
                 }, _element);
                 _partElement._options = {
                     disabled: _partElement.disabled
@@ -105,8 +109,10 @@ var ChaoCheckboxGroup = function(options = {}) {
             }
         } else {
             let _data = this._data.find(data => {if (data.key === _key) {return data;}});
+            let _formInt = new ChaoFormInterface();
             let _partElement = Object.assign({
-                enable: ChaoFormService.getInstance().enable
+                enable: _formInt.enable,
+                _setAvailability: _formInt._setAvailability
             }, _data);
             _partElement._options = {
                 disabled: _partElement.disabled
