@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao.JS Textarea component example</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Example for Chao.JS Textarea component.">
+        <meta name="keywords" content="Chao,Textarea,Sample,Example">
+        <meta name="author" content="Mark Balyi">
+        
+        <link rel="stylesheet" type="text/css" href="./../chao.min.css">
+        <link rel="stylesheet" type="text/css" href="./fontawesome-free-5.7.2-web/css/all.min.css">
+
+        <script type="application/javascript" src="./jquery-3.3.1.min.js"></script>
+        <script type="application/javascript" src="./../chao.min.js"></script>
+    </head>
+    <body style="margin: 125px 50px 500px 400px;">
+
+        <textarea id="chaoTextarea1" title="First title">Default Text Field</textarea>
+        <textarea id="chaoTextarea2"></textarea>
+        <script>
+            var textarea1 = new ChaoTextarea({
+                target: $('#chaoTextarea1'),
+                disabled: true,
+                rows: 3,
+                cols: 2,
+                callback: {
+                    onChange: function(res) {
+                        console.log('Textarea1 change event: ', res);
+                    },
+                    onKeypress: function(res) {
+                        console.log('Textarea1 keypress event: ', res);
+                    }
+                }
+            });
+            var textarea2 = $('#chaoTextarea2').chaoTextarea({
+                disabled: false,
+                callback: {
+                    onChange: function(res) {
+                        console.log('Textarea2 change event: ', res);
+                    },
+                    onKeypress: function(res) {
+                        console.log('Textarea2 keypress event: ', res);
+                    }
+                }
+            });
+        </script>
+
+    </body>
+</html>
