@@ -138,5 +138,44 @@ var ChaoAttributeInterface = function() {
         return _required;
     }
 
+    this.getRows = function() {
+        let _rows = ``;
+
+        if ($.isNumeric(this._options.rows)) {
+            _rows = this._options.rows;
+        } else if ($.isNumeric(this.$target.attr('rows'))) {
+            _rows = this.$target.attr('rows');
+            this._options.rows = _rows;
+        }
+
+        return _rows;
+    }
+
+    this.getCols = function() {
+        let _cols = ``;
+
+        if ($.isNumeric(this._options.cols)) {
+            _cols = this._options.cols;
+        } else if ($.isNumeric(this.$target.attr('cols'))) {
+            _cols = this.$target.attr('cols');
+            this._options.cols = _cols;
+        }
+
+        return _cols;
+    }
+
+    this.getMaxLength = function() {
+        let _maxlength = ``;
+
+        if ($.isNumeric(this._options.maxlength)) {
+            _maxlength = this._options.maxlength;
+        } else if ($.isNumeric(this.$target.attr('maxlength'))) {
+            _maxlength = this.$target.attr('maxlength');
+            this._options.maxlength = _maxlength;
+        }
+
+        return _maxlength;
+    }
+
     return this;
 }

@@ -13,7 +13,9 @@ var ChaoFormService = (function() {
                 let $element = self.$element;
                 if (!self.$element.is('input') && $('input', self.$element).length > 0) {
                     $element = $('input', self.$element);
-                } 
+                }  else if (!self.$element.is('textarea') && $('textarea', self.$element).length > 0) {
+                    $element = $('textarea', self.$element);
+                }
 
                 if (_state === true) {
                     self.$element.removeClass(`chao-${_availability}`);
