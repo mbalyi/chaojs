@@ -1,5 +1,5 @@
 /**
- * Chao.JS Form Service
+ * Chao.JS Form Interface
  */
 
 var ChaoDOMAvailability = Object.freeze({ disabled: 'disabled', readonly: 'readonly' });
