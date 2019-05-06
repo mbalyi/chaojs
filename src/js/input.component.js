@@ -9,6 +9,7 @@ var ChaoInput = function(options = {}) {
     this.$element = null;
 
     ChaoAttributeInterface.call(this);
+    ChaoFormInterface.call(this);
 
     this.init = function(options) {
         try {
@@ -75,10 +76,6 @@ var ChaoInput = function(options = {}) {
             }
         });
     }
-
-    this.enable = ChaoFormService.getInstance().enable;
-
-    this.readonly = ChaoFormService.getInstance().readonly;
 
     this.value = function(_value) {
         if (_value !== undefined) {
